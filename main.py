@@ -39,3 +39,9 @@ if __name__ == "__main__":
 
             print("\nAI回答：")
             print(answer)
+            print("\n参考来源")
+            for _, _, metadata in results:
+                print(f"来源：{metadata['source']}")
+                if "page" in metadata:
+                    print(f"页码：{metadata['page']}")
+                print(f"Chunk ID：{metadata['chunk_id']}")
