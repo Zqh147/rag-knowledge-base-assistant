@@ -6,7 +6,7 @@ if __name__ == "__main__":
     while True:
         question = input("请输入问题(输入'exit'退出)：")
         question = question.strip()
-    #   判断问题是否为空
+        #   判断问题是否为空
         if not question:
             print("问题不能为空，请输入有效的问题。")
             continue
@@ -51,6 +51,7 @@ if __name__ == "__main__":
             print("\nAI回答：")
             print(answer)
             print("\n参考来源")
+
             for result in reranked_results:
 
                 metadata = result["metadata"]
