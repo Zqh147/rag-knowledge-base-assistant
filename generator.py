@@ -24,14 +24,16 @@ def rag_answer(question, results):
 
     context = "\n参考资料："
 
-    for index, (document, similarity, metadata) in enumerate(results):
-        if "page" in metadata:
+    for index, result in enumerate(results):
+
+        document = result["document"]
+        metadata = result["metadata"]
+        if metadata.get("page") is not None:
             context += (
                 f"\n\n第{index + 1}条资料："
                 f"\n来源：{metadata['source']}"
                 f"\n页码：{metadata['page']}"
                 f"\nChunk ID：{metadata['chunk_id']}"
-                f"\n相似度：{similarity:.4f}"
                 f"\n内容：\n{document}"
             )
         else:
@@ -39,7 +41,6 @@ def rag_answer(question, results):
                 f"\n\n第{index + 1}条资料："
                 f"\n来源：{metadata['source']}"
                 f"\nChunk ID：{metadata['chunk_id']}"
-                f"\n相似度：{similarity:.4f}"
                 f"\n内容：\n{document}"
             )
 
