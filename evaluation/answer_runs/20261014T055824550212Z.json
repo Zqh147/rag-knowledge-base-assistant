@@ -1,0 +1,1608 @@
+{
+  "evaluation_type": "regression capture",
+  "executed_at": "2026-10-14T05:58:25.299186+00:00",
+  "python": "3.11.8",
+  "corpus_digest": "7e9828ceeec3c244484ee8394787e229cd2e6c1c8c61aab4a6357908b985bedc",
+  "generation_model": "deepseek-flash",
+  "prompt_sha256": "6241c5bf81efce798095809a19e4e7620175acbc8238c92eb9d4607e29089222",
+  "cases": [
+    {
+      "id": "wifi",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "怎么修改 Wi-Fi 名称和密码？修改后需要重新连接吗？",
+      "answerable": true,
+      "required_evidence_ids": [
+        "ax10-v1-us-wireless"
+      ],
+      "required_points": [
+        {
+          "id": "wifi-1",
+          "text": "修改无线名称和密码的入口"
+        },
+        {
+          "id": "wifi-2",
+          "text": "SSID 和 Password 字段"
+        },
+        {
+          "id": "wifi-3",
+          "text": "区分大小写"
+        },
+        {
+          "id": "wifi-4",
+          "text": "修改后用新名称和密码重新连接"
+        }
+      ]
+    },
+    {
+      "id": "ap",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "我想把路由器切到 AP 模式，应该怎么操作？切换后还能使用 NAT 转发吗？",
+      "answerable": true,
+      "required_evidence_ids": [
+        "ax10-v1-us-ap"
+      ],
+      "required_points": [
+        {
+          "id": "ap-1",
+          "text": "选择 Access Point 并保存、等待重启"
+        },
+        {
+          "id": "ap-2",
+          "text": "网线连接已有路由器"
+        },
+        {
+          "id": "ap-3",
+          "text": "重新登录并配置无线参数、确认保存"
+        },
+        {
+          "id": "ap-4",
+          "text": "AP 模式不支持 NAT 转发"
+        }
+      ]
+    },
+    {
+      "id": "reset",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "恢复出厂设置和重启一样吗？会不会丢失配置？管理页面的 Restore 与 Factory Restore 有什么区别？",
+      "answerable": true,
+      "required_evidence_ids": [
+        "ax10-v1-us-reset",
+        "ax10-v1-us-reboot_concept"
+      ],
+      "required_points": [
+        {
+          "id": "reset-1",
+          "text": "普通重启保留已有设置，不执行出厂恢复"
+        },
+        {
+          "id": "reset-2",
+          "text": "Factory Default Restore 的 RESTORE 保留登录密码和 TP-Link ID，其他配置恢复默认"
+        },
+        {
+          "id": "reset-3",
+          "text": "FACTORY RESTORE 清除自定义配置，需要重新设置"
+        },
+        {
+          "id": "reset-4",
+          "text": "RESTORE 的含义需看所在区域，从备份恢复与部分重置不同"
+        }
+      ]
+    },
+    {
+      "id": "firmware",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "固件升级前需要做什么准备？升级过程中能不能断电？升级后需要等待路由器重启吗？",
+      "answerable": true,
+      "required_evidence_ids": [
+        "ax10-v1-us-firmware",
+        "ax10-v1-us-firmware_preparation"
+      ],
+      "required_points": [
+        {
+          "id": "firmware-1",
+          "text": "升级前备份配置"
+        },
+        {
+          "id": "firmware-2",
+          "text": "核对硬件版本和购买地区，使用适用的官方固件"
+        },
+        {
+          "id": "firmware-3",
+          "text": "本地升级的菜单与选择文件、升级操作"
+        },
+        {
+          "id": "firmware-4",
+          "text": "升级期间不关闭电源，手动升级不拔网线"
+        },
+        {
+          "id": "firmware-5",
+          "text": "等待升级和重启完成"
+        }
+      ]
+    },
+    {
+      "id": "disconnect",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "Wi-Fi 经常掉线，是不是路由器坏了？我应该怎么排查？",
+      "answerable": true,
+      "required_evidence_ids": [
+        "ax10-v1-us-disconnect"
+      ],
+      "required_points": [
+        {
+          "id": "disconnect-1",
+          "text": "现象不足，不能确定设备损坏"
+        },
+        {
+          "id": "disconnect-2",
+          "text": "确认直连 modem 和经过路由器的有线连接稳定"
+        },
+        {
+          "id": "disconnect-3",
+          "text": "追问所有设备还是部分设备掉线"
+        },
+        {
+          "id": "disconnect-4",
+          "text": "仅无线异常时按条件排查干扰、摆放、频段、信道与带宽"
+        },
+        {
+          "id": "disconnect-5",
+          "text": "检查适用固件，前述步骤仍失败时可关闭 Smart Connect 并给出已收录的菜单"
+        }
+      ]
+    },
+    {
+      "id": "out_of_corpus",
+      "scope": {
+        "product_model": "Archer AX10",
+        "hardware_version": "V1",
+        "region": "US"
+      },
+      "question": "怎么查询淘宝订单退款进度？可以帮我办理退款吗？",
+      "answerable": false,
+      "required_evidence_ids": [],
+      "required_points": []
+    }
+  ],
+  "rows": [
+    {
+      "id": "wifi",
+      "generation_called": true,
+      "review": {
+        "covered_point_ids": [
+          "wifi-1",
+          "wifi-2",
+          "wifi-3",
+          "wifi-4"
+        ],
+        "claims": [
+          {
+            "id": "wifi-claim-01",
+            "text": "登录管理页的地址是 http://tplinkwifi.net。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-02",
+            "text": "无线设置入口为 Wireless 或 Advanced > Wireless > Wireless Settings。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-03",
+            "text": "Network Name (SSID) 用于填写新的无线名称。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-04",
+            "text": "Password 用于填写新的无线密码。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-05",
+            "text": "SSID 和无线密码区分大小写。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-06",
+            "text": "无线密码与管理页登录密码用途不同。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-07",
+            "text": "使用无线设备修改无线设置后会断开连接。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-08",
+            "text": "无线修改前记录新名称和密码，修改后重新连接。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless"
+            ]
+          },
+          {
+            "id": "wifi-claim-09",
+            "text": "Quick Setup 更改无线名称或密码后，设备必须使用新名称和密码连接。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-quick_setup"
+            ]
+          }
+        ],
+        "citation_correct": true,
+        "refusal_correct": null,
+        "point_reviews": [
+          {
+            "id": "wifi-1",
+            "text": "修改无线名称和密码的入口",
+            "covered": true,
+            "answer_excerpt": "进入 Wireless 或 Advanced > Wireless > Wireless Settings。",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "wifi-2",
+            "text": "SSID 和 Password 字段",
+            "covered": true,
+            "answer_excerpt": "在 Network Name (SSID) 填新名称，在 Password 填新密码",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "wifi-3",
+            "text": "区分大小写",
+            "covered": true,
+            "answer_excerpt": "区分大小写",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "wifi-4",
+            "text": "修改后用新名称和密码重新连接",
+            "covered": true,
+            "answer_excerpt": "设备必须用新名称和密码重新连接",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          }
+        ],
+        "notes": [
+          "4/4 要点覆盖；无线修改后重连与 Quick Setup 后用新凭据重连均有证据支持。",
+          "固件版本追问独立成段，未附官方引用。"
+        ]
+      },
+      "retrieval_status": "ok",
+      "evidence": [
+        {
+          "document": "Chapter 12 / Specify Wireless Settings\n修改 Wi-Fi 名称和无线密码：\n1. 登录 http://tplinkwifi.net。\n2. 进入 Wireless 或 Advanced > Wireless > Wireless Settings。\n3. 在 Network Name (SSID) 填新名称，在 Password 填新密码；区分大小写。\n使用无线设备修改后会断开连接，请记录新名称与密码再重新连接。\n无线密码与管理页登录密码用途不同。",
+          "metadata": {
+            "hardware_version": "V1",
+            "doc_version": "US V1 online manual; software-specific UI may differ",
+            "doc_type": "official_manual_summary",
+            "source": "knowledge.json",
+            "evidence_id": "ax10-v1-us-wireless",
+            "section": "Chapter 12 / Specify Wireless Settings",
+            "reviewed_at": "2026-10-14",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-12-customize-your-network-settings",
+            "region": "US",
+            "product_model": "Archer AX10",
+            "chunk_id": 0
+          },
+          "rrf_score": 0.03278688524590164,
+          "vector_rank": 1,
+          "bm25_rank": 1,
+          "reranker_score": 5.179697036743164,
+          "citation_id": "[1]"
+        },
+        {
+          "document": "Chapter 4 / Use Quick Setup Wizard\n首次联网设置：\n1. 连接路由器网络，打开 http://tplinkwifi.net，用设置的管理密码登录。\n2. 进入 Advanced > Quick Setup，按向导填写运营商提供的联网信息。\n3. 需要云服务时登录 TP-Link ID，也可 Skip 跳过。\n4. 如果向导更改了 Wi-Fi 名称或密码，设备必须用新名称和密码重新连接。",
+          "metadata": {
+            "region": "US",
+            "reviewed_at": "2026-10-14",
+            "product_model": "Archer AX10",
+            "doc_version": "US V1 online manual; software-specific UI may differ",
+            "hardware_version": "V1",
+            "doc_type": "official_manual_summary",
+            "chunk_id": 0,
+            "section": "Chapter 4 / Use Quick Setup Wizard",
+            "source": "knowledge.json",
+            "evidence_id": "ax10-v1-us-quick_setup",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-4-set-up-internet-connection"
+          },
+          "rrf_score": 0.03200204813108039,
+          "vector_rank": 3,
+          "bm25_rank": 2,
+          "reranker_score": 2.9276633262634277,
+          "citation_id": "[2]"
+        }
+      ],
+      "evidence_check_passed": true,
+      "answer": "适用于 Archer AX10 V1（US）的修改方法如下：\n\n1. 登录 http://tplinkwifi.net。[1]\n2. 进入 Wireless 或 Advanced > Wireless > Wireless Settings。[1]\n3. 在 Network Name (SSID) 填新名称，在 Password 填新密码；区分大小写。[1]\n\n注意：无线密码与管理页登录密码用途不同。[1]\n\n修改后需要重新连接吗：\n\n- 如果使用无线设备修改，修改后会断开连接，请先记录新名称与密码，再重新连接。[1]\n- 如果通过 Quick Setup 向导更改了 Wi-Fi 名称或密码，设备必须用新名称和密码重新连接。[2]\n\n如果实际界面与上述菜单路径不一致，请补充当前固件版本，并核对对应版本的资料。\n\n参考来源：\n[1] knowledge.json；Chapter 12 / Specify Wireless Settings；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-12-customize-your-network-settings\n[2] knowledge.json；Chapter 4 / Use Quick Setup Wizard；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-4-set-up-internet-connection"
+    },
+    {
+      "id": "ap",
+      "generation_called": true,
+      "review": {
+        "covered_point_ids": [
+          "ap-1",
+          "ap-2",
+          "ap-3",
+          "ap-4"
+        ],
+        "claims": [
+          {
+            "id": "ap-claim-01",
+            "text": "AP 模式选择入口是 Advanced > System > Operation Mode。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-02",
+            "text": "在该页面选择 Access Point 并点击 Save。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-03",
+            "text": "保存 AP 模式后需要等待路由器重启。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-04",
+            "text": "重启后通过网线连接已有有线路由器。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-05",
+            "text": "重新登录管理页并进入 Advanced > Quick Setup。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-06",
+            "text": "配置无线参数，点击 Next，确认信息后点击 Save。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-07",
+            "text": "AP 模式不支持 NAT 转发。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-08",
+            "text": "AP 模式不支持家长控制。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-09",
+            "text": "AP 模式不支持 QoS。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          },
+          {
+            "id": "ap-claim-10",
+            "text": "AP 模式的访客网络功能与路由模式相同。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-ap"
+            ]
+          }
+        ],
+        "citation_correct": true,
+        "refusal_correct": null,
+        "point_reviews": [
+          {
+            "id": "ap-1",
+            "text": "选择 Access Point 并保存、等待重启",
+            "covered": true,
+            "answer_excerpt": "选择 **Access Point**，点击 **Save**，等待重启。",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "ap-2",
+            "text": "网线连接已有路由器",
+            "covered": true,
+            "answer_excerpt": "用网线把路由器连接到已有有线路由器。",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "ap-3",
+            "text": "重新登录并配置无线参数、确认保存",
+            "covered": true,
+            "answer_excerpt": "设置无线参数，点击 **Next**，确认并点击 **Save**。",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "ap-4",
+            "text": "AP 模式不支持 NAT 转发",
+            "covered": true,
+            "answer_excerpt": "不能使用 NAT 转发",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          }
+        ],
+        "notes": [
+          "4/4 要点覆盖；AP 操作顺序、NAT 限制与附加功能说明均对应 [1]。",
+          "固件版本追问与本次证据范围说明独立成段。"
+        ]
+      },
+      "retrieval_status": "ok",
+      "evidence": [
+        {
+          "document": "Chapter 4 / Set Up the Router as an Access Point\nAP 模式把已有有线网络转为无线网络：\n1. 登录管理页，进入 Advanced > System > Operation Mode，选择 Access Point，Save，等待重启。\n2. 用网线连接已有有线路由器。\n3. 重新登录，进入 Advanced > Quick Setup，设置无线参数，Next，确认并 Save。\nAP 模式不支持家长控制、QoS 和 NAT 转发；访客网络与路由模式相同。",
+          "metadata": {
+            "evidence_id": "ax10-v1-us-ap",
+            "product_model": "Archer AX10",
+            "chunk_id": 0,
+            "section": "Chapter 4 / Set Up the Router as an Access Point",
+            "doc_type": "official_manual_summary",
+            "doc_version": "US V1 online manual; software-specific UI may differ",
+            "hardware_version": "V1",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-4-set-up-internet-connection",
+            "source": "knowledge.json",
+            "reviewed_at": "2026-10-14",
+            "region": "US"
+          },
+          "rrf_score": 0.03278688524590164,
+          "vector_rank": 1,
+          "bm25_rank": 1,
+          "reranker_score": 4.315742492675781,
+          "citation_id": "[1]"
+        }
+      ],
+      "evidence_check_passed": true,
+      "answer": "适用于证据中的 Archer AX10（V1，美国地区）。按该资料，切换 AP 模式的操作如下：\n\n1. 登录管理页，进入 **Advanced > System > Operation Mode**，选择 **Access Point**，点击 **Save**，等待重启。[1]\n2. 用网线把路由器连接到已有有线路由器。[1]\n3. 重新登录管理页，进入 **Advanced > Quick Setup**，设置无线参数，点击 **Next**，确认并点击 **Save**。[1]\n\n关于 NAT 转发：切换到 AP 模式后**不能使用 NAT 转发**。该资料同时说明，AP 模式不支持家长控制、QoS 和 NAT 转发；访客网络与路由模式相同。[1]\n\n如果实际界面与上述资料不一致，请告诉我当前固件版本，或核对与你设备硬件版本、地区对应的资料。  \n本次检索到的证据未覆盖其他型号、硬件版本或地区的 AP 模式操作。\n\n参考来源：\n[1] knowledge.json；Chapter 4 / Set Up the Router as an Access Point；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-4-set-up-internet-connection"
+    },
+    {
+      "id": "reset",
+      "generation_called": true,
+      "review": {
+        "covered_point_ids": [
+          "reset-1",
+          "reset-2",
+          "reset-3",
+          "reset-4"
+        ],
+        "claims": [
+          {
+            "id": "reset-claim-01",
+            "text": "普通重启是重新启动路由器。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reboot_concept"
+            ]
+          },
+          {
+            "id": "reset-claim-02",
+            "text": "普通重启保留已有设置，不执行恢复出厂清除配置。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reboot_concept"
+            ]
+          },
+          {
+            "id": "reset-claim-03",
+            "text": "完全恢复出厂清除当前自定义设置。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset",
+              "ax10-v1-us-reboot_concept"
+            ]
+          },
+          {
+            "id": "reset-claim-04",
+            "text": "完全恢复出厂使配置回到默认状态。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset",
+              "ax10-v1-us-reboot_concept"
+            ]
+          },
+          {
+            "id": "reset-claim-05",
+            "text": "完全恢复出厂后需要重新配置联网。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset",
+              "ax10-v1-us-reboot_concept"
+            ]
+          },
+          {
+            "id": "reset-claim-06",
+            "text": "Factory Default Restore 区域的 RESTORE 保留登录密码。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-07",
+            "text": "Factory Default Restore 区域的 RESTORE 保留 TP-Link ID。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-08",
+            "text": "Factory Default Restore 区域的 RESTORE 将其他配置恢复出厂默认值。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-09",
+            "text": "Factory Default Restore 操作后需等待重置和重启完成。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-10",
+            "text": "从备份恢复区域的 RESTORE 将备份中的设置恢复到路由器。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-11",
+            "text": "恢复或重置期间不要关闭路由器电源。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-12",
+            "text": "恢复或重置期间不要手动重置路由器。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-13",
+            "text": "重置前建议备份配置。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-14",
+            "text": "备份恢复菜单为 Advanced > System Tools > Backup & Restore。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-15",
+            "text": "BACK UP 将当前配置备份到本机。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-16",
+            "text": "该备份文件的格式是 .bin。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-17",
+            "text": "从备份恢复时先 BROWSE 选择备份文件，再点击 RESTORE。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-18",
+            "text": "从备份恢复时需等待恢复和自动重启。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          },
+          {
+            "id": "reset-claim-19",
+            "text": "RESTORE 的用途需要按所在区域区分：从备份恢复和保留登录信息的部分重置不同。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-reset"
+            ]
+          }
+        ],
+        "citation_correct": true,
+        "refusal_correct": null,
+        "point_reviews": [
+          {
+            "id": "reset-1",
+            "text": "普通重启保留已有设置，不执行出厂恢复",
+            "covered": true,
+            "answer_excerpt": "普通重启是重新启动路由器，保留已有设置，不执行恢复出厂清除配置",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "reset-2",
+            "text": "Factory Default Restore 的 RESTORE 保留登录密码和 TP-Link ID，其他配置恢复默认",
+            "covered": true,
+            "answer_excerpt": "保留登录密码和 TP-Link ID，其他配置恢复出厂默认值",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "reset-3",
+            "text": "FACTORY RESTORE 清除自定义配置，需要重新设置",
+            "covered": true,
+            "answer_excerpt": "会清除当前自定义设置，之后需要重新设置联网",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "reset-4",
+            "text": "RESTORE 的含义需看所在区域，从备份恢复与部分重置不同",
+            "covered": true,
+            "answer_excerpt": "在“从备份恢复”区域时，它是恢复备份；在 Factory Default Restore 区域时，它是保留登录密码和 TP-Link ID 的部分重置",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          }
+        ],
+        "notes": [
+          "4/4 要点覆盖；普通重启、完整恢复出厂、保留登录信息的部分重置与从备份恢复均得到区分。",
+          "[2] 只支持通用重启/完全恢复出厂概念；具体 US V1 菜单和部分重置操作来自 [1]，没有迁移其他地区的按钮或时长。",
+          "存在内容重复，但不重复计入事实分母。"
+        ]
+      },
+      "retrieval_status": "ok",
+      "evidence": [
+        {
+          "document": "Chapter 13 / Backup and Restore Configuration Settings\n配置备份、恢复与重置：\n1. 登录管理页，进入 Advanced > System Tools > Backup & Restore。\n2. BACK UP：将当前配置保存为本机 .bin 备份文件。\n3. 从备份恢复：在恢复配置区域用 BROWSE 选择已有备份文件，再点击 RESTORE；等待恢复和自动重启。此处 RESTORE 的作用是恢复备份中的设置。\n4. Factory Default Restore 区域的 RESTORE：重置配置，但保留登录密码和 TP-Link ID；其他配置恢复出厂默认值。等待重置和重启完成。\n5. FACTORY RESTORE：将配置恢复为出厂默认，清除当前自定义设置，之后需要重新设置联网。\n按钮名称相同也要根据所在区域区分用途，不能把从备份恢复与保留登录信息的重置混为一谈。\n恢复或重置期间不要关闭电源或手动重置；重置前建议先备份配置。普通重启与恢复出厂是不同操作。",
+          "metadata": {
+            "evidence_id": "ax10-v1-us-reset",
+            "reviewed_at": "2026-10-14",
+            "product_model": "Archer AX10",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-13-manage-the-router",
+            "section": "Chapter 13 / Backup and Restore Configuration Settings",
+            "doc_version": "US V1 online manual; software-specific UI may differ",
+            "chunk_id": 0,
+            "doc_type": "official_manual_summary",
+            "source": "knowledge.json",
+            "hardware_version": "V1",
+            "region": "US"
+          },
+          "rrf_score": 0.03252247488101534,
+          "vector_rank": 2,
+          "bm25_rank": 1,
+          "reranker_score": 4.35725212097168,
+          "citation_id": "[1]"
+        },
+        {
+          "document": "Official general explanation / Reboot versus factory reset (concept only)\n厂商对普通重启和完全恢复出厂的通用概念说明：\n普通重启是重新启动路由器，保留已有设置；它不执行恢复出厂清除配置。\n完全恢复出厂会清除自定义设置并返回默认状态，需要重新配置。\n本条只采用重启是否保留设置的通用概念，不提供其他地区的等待时长、设备按钮、菜单或固件操作。保留登录信息的部分恢复应以本型号 US V1 手册为准。",
+          "metadata": {
+            "evidence_id": "ax10-v1-us-reboot_concept",
+            "source": "knowledge.json",
+            "doc_version": "Manufacturer general concept explanation updated 2026-07-28; concept only, no regional steps or firmware",
+            "source_url": "https://www.tp-link.com/ph/blog/1886/how-to-factory-reset-a-tp-link-router-when-to-do-it-and-how/",
+            "reviewed_at": "2026-10-14",
+            "doc_type": "official_general_explainer",
+            "hardware_version": "V1",
+            "product_model": "Archer AX10",
+            "section": "Official general explanation / Reboot versus factory reset (concept only)",
+            "region": "US",
+            "chunk_id": 0
+          },
+          "rrf_score": 0.03252247488101534,
+          "vector_rank": 1,
+          "bm25_rank": 2,
+          "reranker_score": 2.8641600608825684,
+          "citation_id": "[2]"
+        }
+      ],
+      "evidence_check_passed": true,
+      "answer": "以下内容仅适用于证据中的 Archer AX10 V1 US。[1]\n\n**恢复出厂设置和重启不一样。**  \n普通重启是重新启动路由器，保留已有设置，不执行恢复出厂清除配置 [2]。完全恢复出厂会清除自定义设置并返回默认状态，需要重新配置 [2]。本型号资料也明确：普通重启与恢复出厂是不同操作 [1]。\n\n**会不会丢失配置，要区分具体操作：**  \n- 普通重启：保留已有设置，不因重启清除配置 [2]。  \n- 完整 FACTORY RESTORE：会清除当前自定义设置，之后需要重新设置联网 [1]。  \n- Factory Default Restore 区域的 RESTORE：会重置配置，但保留登录密码和 TP-Link ID，其他配置恢复出厂默认值；等待重置和重启完成 [1]。所以这是保留登录信息的部分恢复，不是完整恢复出厂，也不是从备份恢复 [1]。  \n- 从备份恢复的 RESTORE：作用是恢复备份中的设置 [1]。恢复或重置期间不要关闭电源或手动重置；重置前建议先备份配置 [1]。\n\n**管理页面中的 Restore 与 Factory Restore 区别：**  \n先登录管理页，进入 Advanced > System Tools > Backup & Restore [1]。按钮名称相同也要根据所在区域区分用途，不能把从备份恢复与保留登录信息的重置混为一谈 [1]。\n\n1. BACK UP：将当前配置保存为本机 .bin 备份文件 [1]。  \n2. 从备份恢复：在恢复配置区域用 BROWSE 选择已有备份文件，再点击 RESTORE；等待恢复和自动重启。此处的 RESTORE 是恢复备份中的设置 [1]。  \n3. Factory Default Restore 区域的 RESTORE：重置配置，但保留登录密码和 TP-Link ID；其他配置恢复出厂默认值。等待重置和重启完成 [1]。  \n4. FACTORY RESTORE：将配置恢复为出厂默认，清除当前自定义设置，之后需要重新设置联网 [1]。\n\n因此，管理页面里的 Restore 要看它在哪个区域：在“从备份恢复”区域时，它是恢复备份；在 Factory Default Restore 区域时，它是保留登录密码和 TP-Link ID 的部分重置。FACTORY RESTORE 是完整恢复出厂 [1]。\n\n本次检索到的证据未覆盖 Archer AX10 V1 US 管理页面中执行“普通重启”的具体菜单路径，也未覆盖你当前固件的实际界面布局。如果你的页面名称或位置与上述不同，请告诉我当前固件版本，并核对对应资料。\n\n参考来源：\n[1] knowledge.json；Chapter 13 / Backup and Restore Configuration Settings；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-13-manage-the-router\n[2] knowledge.json；Official general explanation / Reboot versus factory reset (concept only)；Chunk 0；https://www.tp-link.com/ph/blog/1886/how-to-factory-reset-a-tp-link-router-when-to-do-it-and-how/"
+    },
+    {
+      "id": "firmware",
+      "generation_called": true,
+      "review": {
+        "covered_point_ids": [
+          "firmware-1",
+          "firmware-2",
+          "firmware-4",
+          "firmware-5"
+        ],
+        "claims": [
+          {
+            "id": "firmware-claim-01",
+            "text": "选择固件前确认设备型号。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-02",
+            "text": "选择固件前确认硬件版本，并使用匹配的固件。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-03",
+            "text": "错误固件可能损坏设备。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-04",
+            "text": "从设备购买地区对应的 TP-Link 官方网站下载固件。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-05",
+            "text": "EU 和 US 固件不同，不能互换。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-06",
+            "text": "升级前备份路由器配置。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware",
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-07",
+            "text": "升级前可记录相对于默认值修改过的设置。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-08",
+            "text": "从路由器官方支持页下载适用固件文件。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware"
+            ]
+          },
+          {
+            "id": "firmware-claim-09",
+            "text": "手动本地升级应使用有线连接。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-10",
+            "text": "固件升级期间不能关闭路由器电源。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware",
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-11",
+            "text": "固件升级期间不能断开网线。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware_preparation"
+            ]
+          },
+          {
+            "id": "firmware-claim-12",
+            "text": "需要等待固件升级和路由器重启完成。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-firmware"
+            ]
+          }
+        ],
+        "citation_correct": true,
+        "refusal_correct": null,
+        "point_reviews": [
+          {
+            "id": "firmware-1",
+            "text": "升级前备份配置",
+            "covered": true,
+            "answer_excerpt": "升级前备份路由器配置",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "firmware-2",
+            "text": "核对硬件版本和购买地区，使用适用的官方固件",
+            "covered": true,
+            "answer_excerpt": "确认设备型号和硬件版本，下载与硬件版本匹配的固件",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "firmware-3",
+            "text": "本地升级的菜单与选择文件、升级操作",
+            "covered": false,
+            "answer_excerpt": null,
+            "reason": "回答缺少本地升级菜单以及 BROWSE / UPGRADE 操作。"
+          },
+          {
+            "id": "firmware-4",
+            "text": "升级期间不关闭电源，手动升级不拔网线",
+            "covered": true,
+            "answer_excerpt": "不要关闭电源或断开网线",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "firmware-5",
+            "text": "等待升级和重启完成",
+            "covered": true,
+            "answer_excerpt": "应等待升级和路由器重启完成",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          }
+        ],
+        "notes": [
+          "4/5 要点覆盖；firmware-3 未覆盖：没有给出 Advanced > System > Firmware Upgrade、Local Upgrade 的 BROWSE 和 UPGRADE 操作。",
+          "firmware-2 的版本、地区和官网要求均覆盖；firmware-4 的不断电和不拔网线要求均覆盖。",
+          "该用户问题聚焦准备、供电和重启；菜单操作属于本次预设的扩展要点。保留原标准，不在看过答案后删除它。"
+        ]
+      },
+      "retrieval_status": "ok",
+      "evidence": [
+        {
+          "document": "Chapter 13 / Upgrade the Firmware\n本地固件升级操作与注意事项：\n1. 升级前备份路由器配置。\n2. 从路由器的官方支持页下载适用固件文件。\n3. 登录管理页，进入 Advanced > System > Firmware Upgrade。\n4. 在 Local Upgrade 区域点击 BROWSE 选择已下载的新固件文件，再点击 UPGRADE。\n5. 等待升级和路由器重启完成。\n升级期间不要关闭路由器电源。",
+          "metadata": {
+            "doc_version": "US V1 online manual; software-specific UI may differ",
+            "region": "US",
+            "doc_type": "official_manual_summary",
+            "evidence_id": "ax10-v1-us-firmware",
+            "chunk_id": 0,
+            "section": "Chapter 13 / Upgrade the Firmware",
+            "reviewed_at": "2026-10-14",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-13-manage-the-router",
+            "hardware_version": "V1",
+            "source": "knowledge.json",
+            "product_model": "Archer AX10"
+          },
+          "rrf_score": 0.03177805800756621,
+          "vector_rank": 5,
+          "bm25_rank": 1,
+          "reranker_score": 3.9503767490386963,
+          "citation_id": "[1]"
+        },
+        {
+          "document": "Official FAQ 2796 / Before upgrading; During upgrading\n选择升级固件前的核对：\n1. 确认设备型号和硬件版本，下载与硬件版本匹配的固件；错误固件可能损坏设备。\n2. 从设备购买地区对应的 TP-Link 官方网站下载；EU 与 US 固件不同，不能互换。\n3. 升级前备份配置，或记录修改过的设置。\n手动本地升级应使用有线连接；升级期间不要关闭电源或断开网线。\n本条仅覆盖适用范围与升级注意事项，不提供某个具体固件文件的下载推荐。",
+          "metadata": {
+            "source_url": "https://www.tp-link.com/us/support/faq/2796/",
+            "evidence_id": "ax10-v1-us-firmware_preparation",
+            "doc_type": "official_faq_summary",
+            "source": "knowledge.json",
+            "product_model": "Archer AX10",
+            "chunk_id": 0,
+            "reviewed_at": "2026-10-14",
+            "region": "US",
+            "doc_version": "FAQ 2796 updated 2026-04-23; general precautions reviewed for US V1",
+            "section": "Official FAQ 2796 / Before upgrading; During upgrading",
+            "hardware_version": "V1"
+          },
+          "rrf_score": 0.03252247488101534,
+          "vector_rank": 1,
+          "bm25_rank": 2,
+          "reranker_score": 2.2561261653900146,
+          "citation_id": "[2]"
+        }
+      ],
+      "evidence_check_passed": true,
+      "answer": "以下依据的是证据中 **Archer AX10；硬件 V1；地区 US** 的资料 [1][2]。\n\n**升级前需要做什么准备：**\n1. 确认设备型号和硬件版本，下载与硬件版本匹配的固件；错误固件可能损坏设备。[2]\n2. 从设备购买地区对应的 TP-Link 官方网站下载；EU 与 US 固件不同，不能互换。[2]\n3. 升级前备份路由器配置，或记录修改过的设置。[1][2]\n4. 从路由器的官方支持页下载适用固件文件。[1]\n5. 手动本地升级应使用有线连接。[2]\n\n**升级过程中能不能断电：**\n不能断电。升级期间不要关闭路由器电源。[1] 升级期间也不要关闭电源或断开网线。[2]\n\n**升级后需要等待路由器重启吗：**\n需要。应等待升级和路由器重启完成。[1]\n\n如果实际界面与上述不符，请补充当前固件版本，并核对对应型号、硬件版本和地区的资料。\n\n参考来源：\n[1] knowledge.json；Chapter 13 / Upgrade the Firmware；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-13-manage-the-router\n[2] knowledge.json；Official FAQ 2796 / Before upgrading; During upgrading；Chunk 0；https://www.tp-link.com/us/support/faq/2796/"
+    },
+    {
+      "id": "disconnect",
+      "generation_called": true,
+      "review": {
+        "covered_point_ids": [
+          "disconnect-1",
+          "disconnect-2",
+          "disconnect-3",
+          "disconnect-4",
+          "disconnect-5"
+        ],
+        "claims": [
+          {
+            "id": "disconnect-claim-01",
+            "text": "仅凭 Wi-Fi 经常掉线不能确定路由器已经损坏。",
+            "supported": true,
+            "citation_ids": [
+              "[1]",
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect",
+              "ax10-v1-us-no_internet"
+            ]
+          },
+          {
+            "id": "disconnect-claim-02",
+            "text": "先检查电脑通过网线直连 modem 时的连接是否稳定。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-03",
+            "text": "再检查电脑经路由器有线连接时的连接是否稳定。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-04",
+            "text": "如果有线也不稳定，不能按仅无线故障处理。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-05",
+            "text": "无线故障排查步骤的前提是有线稳定而无线掉线。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-06",
+            "text": "排查时应远离微波炉、冰箱、蓝牙设备等干扰源。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-07",
+            "text": "排查时减少遮挡并优化路由器摆放位置。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-08",
+            "text": "信号较强但仍掉线，且设备支持时，可尝试连接 5GHz。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-09",
+            "text": "可检查信道干扰并调整信道和带宽。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-10",
+            "text": "FAQ 建议可以尝试将 2.4GHz 和 5GHz 的带宽设为 20MHz。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-11",
+            "text": "信道与带宽的设置入口为 Advanced > Wireless > Wireless Settings。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-12",
+            "text": "在相应频段核对 Channel 与 Channel Width 设置。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-13",
+            "text": "Channel 用于选择工作信道。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-14",
+            "text": "Channel Width 用于选择信道带宽。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-15",
+            "text": "手册建议未遇到间歇无线断连时保留 Channel 的 Auto 设置。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-16",
+            "text": "信道调整不能作为已确定故障根因的证明。",
+            "supported": true,
+            "citation_ids": [
+              "[2]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-wireless_radio"
+            ]
+          },
+          {
+            "id": "disconnect-claim-17",
+            "text": "应检查适用的固件更新。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-18",
+            "text": "前述检查仍未解决时可以尝试关闭 Smart Connect。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-19",
+            "text": "关闭 Smart Connect 的入口为 Advanced > Wireless > Wireless Settings。",
+            "supported": true,
+            "citation_ids": [
+              "[1]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-disconnect"
+            ]
+          },
+          {
+            "id": "disconnect-claim-20",
+            "text": "已配置但不能上网时，在 Advanced > Network > Status 查看 WAN IP。",
+            "supported": true,
+            "citation_ids": [
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-no_internet"
+            ]
+          },
+          {
+            "id": "disconnect-claim-21",
+            "text": "WAN IP 为 0.0.0.0 时先检查路由器与 modem 的物理连接。",
+            "supported": true,
+            "citation_ids": [
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-no_internet"
+            ]
+          },
+          {
+            "id": "disconnect-claim-22",
+            "text": "WAN IP 有效时可尝试将 modem 和路由器都断电 1 分钟。",
+            "supported": true,
+            "citation_ids": [
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-no_internet"
+            ]
+          },
+          {
+            "id": "disconnect-claim-23",
+            "text": "上述重启流程应先启动 modem，并等待约 2 分钟。",
+            "supported": true,
+            "citation_ids": [
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-no_internet"
+            ]
+          },
+          {
+            "id": "disconnect-claim-24",
+            "text": "随后启动路由器，等待 1 到 2 分钟并复测联网。",
+            "supported": true,
+            "citation_ids": [
+              "[3]"
+            ],
+            "evidence_ids": [
+              "ax10-v1-us-no_internet"
+            ]
+          }
+        ],
+        "citation_correct": false,
+        "refusal_correct": null,
+        "point_reviews": [
+          {
+            "id": "disconnect-1",
+            "text": "现象不足，不能确定设备损坏",
+            "covered": true,
+            "answer_excerpt": "不能仅凭“Wi-Fi 经常掉线”判断路由器坏了",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "disconnect-2",
+            "text": "确认直连 modem 和经过路由器的有线连接稳定",
+            "covered": true,
+            "answer_excerpt": "先确认电脑用网线直连 modem 时网络稳定，再确认电脑通过路由器的有线连接也稳定",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "disconnect-3",
+            "text": "追问所有设备还是部分设备掉线",
+            "covered": true,
+            "answer_excerpt": "是所有设备还是部分设备掉线",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "disconnect-4",
+            "text": "仅无线异常时按条件排查干扰、摆放、频段、信道与带宽",
+            "covered": true,
+            "answer_excerpt": "只在有线稳定、无线掉线时，依次排查",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          },
+          {
+            "id": "disconnect-5",
+            "text": "检查适用固件，前述步骤仍失败时可关闭 Smart Connect 并给出已收录的菜单",
+            "covered": true,
+            "answer_excerpt": "前述检查仍不能解决时，可尝试关闭 Smart Connect：登录管理页，进入 Advanced > Wireless > Wireless Settings，关闭 Smart Connect",
+            "reason": "答案正确覆盖该预设要点；复合要求均经全文核对。"
+          }
+        ],
+        "notes": [
+          "5/5 要点覆盖；排查前提、追问故障范围、条件性步骤与 Smart Connect 菜单齐全。",
+          "设备事实均由保存的检索证据支持；不能将此结果等同于官方引用完全准确。",
+          "严格引用审核不通过：回答将“排查前请确认：是所有设备还是部分设备掉线”附 [1]，并将“需补充指示灯、WAN IP、连接方式”与 [3] 放在同一段。这些是系统追问策略，应与官方设备操作分段。",
+          "官方 FAQ 722 支持有线稳定的前置检查；官方手册 FAQ Q4 支持 WAN IP 分支及重启流程。不能因此把交互追问描述成官方原文要求。"
+        ]
+      },
+      "retrieval_status": "ok",
+      "evidence": [
+        {
+          "document": "Official FAQ 722 / Before You Begin; Steps 1–6\n无线频繁断连的前置检查：先确认电脑用网线直连 modem 时网络稳定，再确认电脑通过路由器的有线连接也稳定。若有线同样不稳，不能按仅无线故障处理。\n只在有线稳定、无线掉线时依次排查：\n1. 让路由器远离微波炉、冰箱、蓝牙设备等干扰源，减少遮挡；优化摆放位置。\n2. 信号较强但仍掉线，且设备支持时，尝试连接 5GHz 网络。\n3. 检查信道干扰并调整信道和带宽；FAQ 建议可尝试把 2.4GHz 和 5GHz 的带宽设为 20MHz。\n4. 检查适用的固件更新。\n5. 前述检查仍不能解决时，可尝试关闭 Smart Connect：登录管理页，进入 Advanced > Wireless > Wireless Settings，关闭 Smart Connect。\n排查前请确认是所有设备还是部分设备掉线，以及有线是否正常。以上现象和建议不能证明路由器已经损坏；功能和界面需与实际固件核对。",
+          "metadata": {
+            "section": "Official FAQ 722 / Before You Begin; Steps 1–6",
+            "chunk_id": 0,
+            "doc_type": "official_faq_summary",
+            "product_model": "Archer AX10",
+            "evidence_id": "ax10-v1-us-disconnect",
+            "hardware_version": "V1",
+            "source": "knowledge.json",
+            "doc_version": "FAQ 722 updated 2026-04-17; general checks reviewed for US V1",
+            "region": "US",
+            "source_url": "https://www.tp-link.com/us/support/faq/722/",
+            "reviewed_at": "2026-10-14"
+          },
+          "rrf_score": 0.03278688524590164,
+          "vector_rank": 1,
+          "bm25_rank": 1,
+          "reranker_score": 6.150944232940674,
+          "citation_id": "[1]"
+        },
+        {
+          "document": "Chapter 12 / Specify Wireless Settings / Channel and Channel Width\n无线信道与带宽设置：\n1. 登录管理页，进入 Advanced > Wireless > Wireless Settings。\n2. 在相应频段的设置中核对 Channel（工作信道）和 Channel Width（信道带宽）。\nChannel 用来选择工作信道，Channel Width 用来选择信道带宽。手册建议未遇到无线间歇断连时保留 Channel 的 Auto 设置。\n具体排查前应确认是否只有无线设备断连；不要把信道调整当成确定故障根因。",
+          "metadata": {
+            "product_model": "Archer AX10",
+            "section": "Chapter 12 / Specify Wireless Settings / Channel and Channel Width",
+            "reviewed_at": "2026-10-14",
+            "chunk_id": 0,
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-12-customize-your-network-settings",
+            "hardware_version": "V1",
+            "evidence_id": "ax10-v1-us-wireless_radio",
+            "doc_type": "official_manual_summary",
+            "source": "knowledge.json",
+            "region": "US",
+            "doc_version": "US V1 online manual; software-specific UI may differ"
+          },
+          "rrf_score": 0.0315136476426799,
+          "vector_rank": 2,
+          "bm25_rank": 5,
+          "reranker_score": 1.7932322025299072,
+          "citation_id": "[2]"
+        },
+        {
+          "document": "FAQ Q4 / Cannot access the internet after configuration\n已经配置但不能上网，先登录 Advanced > Network > Status 看 WAN IP。\n若 IP 为 0.0.0.0，先检查路由器与 modem 的物理连接。\n若有有效 IP，可按手册重启 modem 和路由器：都断电 1 分钟，先开 modem 等约 2 分钟，再开路由器等 1～2 分钟复测。\n需补充指示灯、WAN IP、连接方式，不能直接判断一定是路由器损坏。",
+          "metadata": {
+            "hardware_version": "V1",
+            "evidence_id": "ax10-v1-us-no_internet",
+            "source": "knowledge.json",
+            "chunk_id": 0,
+            "product_model": "Archer AX10",
+            "doc_type": "official_manual_summary",
+            "reviewed_at": "2026-10-14",
+            "source_url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/faq",
+            "region": "US",
+            "section": "FAQ Q4 / Cannot access the internet after configuration",
+            "doc_version": "US V1 online manual; software-specific UI may differ"
+          },
+          "rrf_score": 0.015151515151515152,
+          "vector_rank": 6,
+          "bm25_rank": null,
+          "reranker_score": 0.35037848353385925,
+          "citation_id": "[3]"
+        }
+      ],
+      "evidence_check_passed": true,
+      "answer": "以下仅按本次证据对应的 Archer AX10 V1（US）整理。[1]\n\n不能仅凭“Wi-Fi 经常掉线”判断路由器坏了。证据中明确：以上现象和建议不能证明路由器已经损坏；也不能直接判断一定是路由器损坏。[1][3]\n\n设备操作与排查如下：\n\n- 前置检查：先确认电脑用网线直连 modem 时网络稳定，再确认电脑通过路由器的有线连接也稳定。若有线同样不稳，不能按仅无线故障处理。[1]\n- 排查前请确认：是所有设备还是部分设备掉线，以及有线是否正常。[1]\n- 只在有线稳定、无线掉线时，依次排查：\n  1. 让路由器远离微波炉、冰箱、蓝牙设备等干扰源，减少遮挡；优化摆放位置。[1]\n  2. 信号较强但仍掉线，且设备支持时，尝试连接 5GHz 网络。[1]\n  3. 检查信道干扰并调整信道和带宽；FAQ 建议可尝试把 2.4GHz 和 5GHz 的带宽设为 20MHz。[1] 对应设置路径是：登录管理页，进入 Advanced > Wireless > Wireless Settings，在相应频段核对 Channel 和 Channel Width。Channel 用来选择工作信道，Channel Width 用来选择信道带宽。手册建议未遇到无线间歇断连时保留 Channel 的 Auto 设置；具体排查前应确认是否只有无线设备断连，不要把信道调整当成确定故障根因。[2]\n  4. 检查适用的固件更新。[1]\n  5. 前述检查仍不能解决时，可尝试关闭 Smart Connect：登录管理页，进入 Advanced > Wireless > Wireless Settings，关闭 Smart Connect。[1]\n- 如果已经配置但不能上网：先登录 Advanced > Network > Status 看 WAN IP。若 IP 为 0.0.0.0，先检查路由器与 modem 的物理连接。若有有效 IP，可按手册重启 modem 和路由器：都断电 1 分钟，先开 modem 等约 2 分钟，再开路由器等 1～2 分钟复测。需补充指示灯、WAN IP、连接方式，不能直接判断一定是路由器损坏。[3]\n\n为了继续判断，请补充：是全部设备还是部分设备掉线；有线连接是否稳定；若涉及无法上网，请提供指示灯状态、WAN IP、当前连接方式；当前固件版本；以及上述界面与实际界面是否一致。如果实际界面与资料路径不一致，请告诉我当前固件版本，或核对对应版本的资料。\n\n本次检索到的证据未覆盖“仅凭 Wi-Fi 掉线就判定路由器硬件损坏”的检测方法。如果按上述有序排查后仍未解决，需要结合补充信息继续核对，不能直接下结论为路由器坏了。\n\n参考来源：\n[1] knowledge.json；Official FAQ 722 / Before You Begin; Steps 1–6；Chunk 0；https://www.tp-link.com/us/support/faq/722/\n[2] knowledge.json；Chapter 12 / Specify Wireless Settings / Channel and Channel Width；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-12-customize-your-network-settings\n[3] knowledge.json；FAQ Q4 / Cannot access the internet after configuration；Chunk 0；https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/faq"
+    },
+    {
+      "id": "out_of_corpus",
+      "generation_called": false,
+      "review": {
+        "covered_point_ids": [],
+        "claims": [],
+        "citation_correct": null,
+        "refusal_correct": true,
+        "point_reviews": [],
+        "notes": [
+          "检索状态 no_evidence、generation_called=false、无检索证据；返回范围说明并拒答。",
+          "未编造淘宝退款流程，也未声称执行退款；1/1 域外拒答通过。"
+        ]
+      },
+      "retrieval_status": "no_evidence",
+      "evidence": [],
+      "evidence_check_passed": true,
+      "answer": "本次检索未找到足够相关的路由器资料，无法依据这些资料回答该问题。当前服务仅提供已收录设备的资料问答与故障排查建议。"
+    }
+  ],
+  "review_provenance": {
+    "reviewer_type": "AI assistant evidence review",
+    "human_confirmed": false,
+    "reviewed_at": "2026-10-14T06:11:14.575320+00:00",
+    "source_filename": "20261014T055824550212Z.json",
+    "source_sha256": "968898839419892679863bc9ffb101ed9072230f7ff00476c5026849da1fbcb1",
+    "method": "人工审核格式的 AI 辅助逐题标注：先核对预设要点，再将回答拆成去重后的设备事实/操作/条件建议，逐项匹配保存的检索证据；另对照官方网页严格核查引用。",
+    "claim_unit": "同一回答内语义重复的事实合并；同一操作中的短按钮序列可作为一个可核对操作；不同设置字段、保留对象、功能限制分别计数。",
+    "excluded_from_device_claim_denominator": [
+      "范围标题",
+      "参考来源列表",
+      "要求补充信息的交互策略",
+      "说明本次检索范围的语句"
+    ],
+    "citation_rule": "生成回答整体审核：设备事实/操作引用需支持对应内容，系统追问需与官方引用分开；某回答发现一处此类问题，即该回答引用审核不通过。",
+    "fixed_gold_points": "保持捕获报告内原有 required_points 和分母；未因缺漏修改标准。",
+    "web_source_checks": [
+      {
+        "url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-12-customize-your-network-settings",
+        "checked_sections": "无线 SSID/Password、断连、Channel/Channel Width、Auto"
+      },
+      {
+        "url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-4-set-up-internet-connection",
+        "checked_sections": "Quick Setup 重连、AP 顺序和功能限制"
+      },
+      {
+        "url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/chapter-13-manage-the-router",
+        "checked_sections": "本地升级、备份恢复、部分重置、完整重置"
+      },
+      {
+        "url": "https://www.tp-link.com/us/support/faq/2796/",
+        "checked_sections": "硬件版本、购买地区、备份、有线升级和供电"
+      },
+      {
+        "url": "https://www.tp-link.com/us/support/faq/722/",
+        "checked_sections": "有线前置检查、条件性无线排查和 Smart Connect"
+      },
+      {
+        "url": "https://www.tp-link.com/us/user-guides/archer-ax10&ax1500_v1/faq",
+        "checked_sections": "Q4 WAN IP、物理连接和重启顺序"
+      },
+      {
+        "url": "https://www.tp-link.com/ph/blog/1886/how-to-factory-reset-a-tp-link-router-when-to-do-it-and-how/",
+        "checked_sections": "仅重启保留设置与完全恢复出厂清除设置的通用概念"
+      }
+    ],
+    "limitations": "6 个已知修复回归场景，5 个真实生成答案、1 个域外规则拒答；AI 辅助标注尚未经独立人工复核。无依据率只针对已审核设备事实，不代表所有场景的幻觉率；来源归属错误通过引用指标另行记录。"
+  },
+  "review_summary": {
+    "evaluation_type": "AI-assisted evidence-reviewed regression cases; human verification pending",
+    "case_count": 6,
+    "answerable_cases": 5,
+    "out_of_corpus_cases": 1,
+    "mean_required_point_coverage": 0.96,
+    "evidence_support_rate": 1.0,
+    "supported_claims": 74,
+    "reviewed_factual_claims": 74,
+    "answers_with_unsupported_claim_rate": 0.0,
+    "answers_with_unsupported_claims": 0,
+    "answers_with_factual_claims": 5,
+    "citation_review_pass_rate": 0.8,
+    "generated_answers": 5,
+    "out_of_corpus_refusal_correct_rate": 1.0,
+    "limitations": "6 个已知修复回归场景，5 个真实生成答案、1 个域外规则拒答；AI 辅助标注尚未经独立人工复核。无依据率只针对已审核设备事实，不代表所有场景的幻觉率；来源归属错误通过引用指标另行记录。",
+    "pooled_required_point_coverage": {
+      "covered": 21,
+      "required": 22,
+      "rate": 0.9545454545454546
+    }
+  }
+}

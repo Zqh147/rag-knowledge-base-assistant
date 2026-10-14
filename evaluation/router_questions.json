@@ -1,0 +1,387 @@
+[
+  {
+    "id": "calibration-1",
+    "split": "calibration",
+    "question": "Internet指示灯一直橙色是什么意思？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-led"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-2",
+    "split": "calibration",
+    "question": "怎么修改无线网络名称和密码？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-wireless"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-3",
+    "split": "calibration",
+    "question": "访客怎样才能不访问我家的主网？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-guest"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-4",
+    "split": "calibration",
+    "question": "怎样切换成Access Point模式？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-ap"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-5",
+    "split": "calibration",
+    "question": "升级固件时需要注意什么？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-firmware"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-6",
+    "split": "calibration",
+    "question": "设置完还是不能上网，应该先检查哪里？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-no_internet"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "calibration-7",
+    "split": "calibration",
+    "question": "路由器怎么查询快递单号？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "calibration-8",
+    "split": "calibration",
+    "question": "今天北京的天气是什么？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "calibration-9",
+    "split": "calibration",
+    "question": "怎样用路由器查询宽带欠费金额？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "calibration-10",
+    "split": "calibration",
+    "question": "这台设备的保修到期日期是什么？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "calibration-11",
+    "split": "calibration",
+    "question": "如何在路由器上安装第三方插件？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "calibration-12",
+    "split": "calibration",
+    "question": "怎么在这个路由器上部署Docker容器？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-13",
+    "split": "holdout",
+    "question": "网口的灯变成橙色，已经插了线但上不了网，这是啥意思？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-led"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-14",
+    "split": "holdout",
+    "question": "USB灯灭着，是不是还没插U盘？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-led"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-15",
+    "split": "holdout",
+    "question": "WPS配对后灯过了几分钟就灭了，这正常吗？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-led"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-16",
+    "split": "holdout",
+    "question": "用手机把wifi名字和密码改了后断开了，我该怎么办？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-wireless"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-17",
+    "split": "holdout",
+    "question": "无线密码在哪个菜单改，大小写要区分吗？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-wireless"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-18",
+    "split": "holdout",
+    "question": "客人能不能互相看见，要在哪里控制？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-guest"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-19",
+    "split": "holdout",
+    "question": "我想把已有的有线网络变为无线网络，AP模式的步骤是什么？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-ap"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-20",
+    "split": "holdout",
+    "question": "切换到AP模式后还能用NAT转发吗？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-ap"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-21",
+    "split": "holdout",
+    "question": "下载固件后如何在网页上本地升级，过程中可以关电吗？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-firmware"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-22",
+    "split": "holdout",
+    "question": "恢复出厂和重启一样吗，会丢联网设置吗？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-reset",
+      "ax10-v1-us-reboot_concept"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-23",
+    "split": "holdout",
+    "question": "恢复的时候如何保留登录密码和TP-Link账号？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-reset"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-24",
+    "split": "holdout",
+    "question": "tplinkwifi.net打不开，要检查什么？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-login"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-25",
+    "split": "holdout",
+    "question": "宽带运营商给我拨号用户名和密码，PPPoE要填在哪里？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-pppoe"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-26",
+    "split": "holdout",
+    "question": "无线经常掉线，但网线连接正常，要怎样排查？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-disconnect"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-27",
+    "split": "holdout",
+    "question": "WAN地址显示0.0.0.0且无法上网，先检查什么？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax20-v1-us-no_internet"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-28",
+    "split": "holdout",
+    "question": "新买的路由器第一次设置，改了无线名字后其他设备怎么办？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [
+      "ax10-v1-us-quick_setup"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "holdout-29",
+    "split": "holdout",
+    "question": "这台路由器能保修多久，购买日期是去年？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-30",
+    "split": "holdout",
+    "question": "帮我查今天人民币美元汇率",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-31",
+    "split": "holdout",
+    "question": "能否自动给我的淘宝订单退款？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-32",
+    "split": "holdout",
+    "question": "这台路由器怎样运行Python脚本？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-33",
+    "split": "holdout",
+    "question": "你能查询运营商的停机复机记录吗？",
+    "product_model": "Archer AX10",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "holdout-34",
+    "split": "holdout",
+    "question": "这个路由器当前有多少台在线设备？",
+    "product_model": "Archer AX20",
+    "hardware_version": "V1",
+    "region": "US",
+    "gold_evidence_ids": [],
+    "answerable": false
+  }
+]

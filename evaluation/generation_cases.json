@@ -1,0 +1,179 @@
+[
+  {
+    "id": "wifi",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "怎么修改 Wi-Fi 名称和密码？修改后需要重新连接吗？",
+    "answerable": true,
+    "required_evidence_ids": [
+      "ax10-v1-us-wireless"
+    ],
+    "required_points": [
+      {
+        "id": "wifi-1",
+        "text": "修改无线名称和密码的入口"
+      },
+      {
+        "id": "wifi-2",
+        "text": "SSID 和 Password 字段"
+      },
+      {
+        "id": "wifi-3",
+        "text": "区分大小写"
+      },
+      {
+        "id": "wifi-4",
+        "text": "修改后用新名称和密码重新连接"
+      }
+    ]
+  },
+  {
+    "id": "ap",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "我想把路由器切到 AP 模式，应该怎么操作？切换后还能使用 NAT 转发吗？",
+    "answerable": true,
+    "required_evidence_ids": [
+      "ax10-v1-us-ap"
+    ],
+    "required_points": [
+      {
+        "id": "ap-1",
+        "text": "选择 Access Point 并保存、等待重启"
+      },
+      {
+        "id": "ap-2",
+        "text": "网线连接已有路由器"
+      },
+      {
+        "id": "ap-3",
+        "text": "重新登录并配置无线参数、确认保存"
+      },
+      {
+        "id": "ap-4",
+        "text": "AP 模式不支持 NAT 转发"
+      }
+    ]
+  },
+  {
+    "id": "reset",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "恢复出厂设置和重启一样吗？会不会丢失配置？管理页面的 Restore 与 Factory Restore 有什么区别？",
+    "answerable": true,
+    "required_evidence_ids": [
+      "ax10-v1-us-reset",
+      "ax10-v1-us-reboot_concept"
+    ],
+    "required_points": [
+      {
+        "id": "reset-1",
+        "text": "普通重启保留已有设置，不执行出厂恢复"
+      },
+      {
+        "id": "reset-2",
+        "text": "Factory Default Restore 的 RESTORE 保留登录密码和 TP-Link ID，其他配置恢复默认"
+      },
+      {
+        "id": "reset-3",
+        "text": "FACTORY RESTORE 清除自定义配置，需要重新设置"
+      },
+      {
+        "id": "reset-4",
+        "text": "RESTORE 的含义需看所在区域，从备份恢复与部分重置不同"
+      }
+    ]
+  },
+  {
+    "id": "firmware",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "固件升级前需要做什么准备？升级过程中能不能断电？升级后需要等待路由器重启吗？",
+    "answerable": true,
+    "required_evidence_ids": [
+      "ax10-v1-us-firmware",
+      "ax10-v1-us-firmware_preparation"
+    ],
+    "required_points": [
+      {
+        "id": "firmware-1",
+        "text": "升级前备份配置"
+      },
+      {
+        "id": "firmware-2",
+        "text": "核对硬件版本和购买地区，使用适用的官方固件"
+      },
+      {
+        "id": "firmware-3",
+        "text": "本地升级的菜单与选择文件、升级操作"
+      },
+      {
+        "id": "firmware-4",
+        "text": "升级期间不关闭电源，手动升级不拔网线"
+      },
+      {
+        "id": "firmware-5",
+        "text": "等待升级和重启完成"
+      }
+    ]
+  },
+  {
+    "id": "disconnect",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "Wi-Fi 经常掉线，是不是路由器坏了？我应该怎么排查？",
+    "answerable": true,
+    "required_evidence_ids": [
+      "ax10-v1-us-disconnect"
+    ],
+    "required_points": [
+      {
+        "id": "disconnect-1",
+        "text": "现象不足，不能确定设备损坏"
+      },
+      {
+        "id": "disconnect-2",
+        "text": "确认直连 modem 和经过路由器的有线连接稳定"
+      },
+      {
+        "id": "disconnect-3",
+        "text": "追问所有设备还是部分设备掉线"
+      },
+      {
+        "id": "disconnect-4",
+        "text": "仅无线异常时按条件排查干扰、摆放、频段、信道与带宽"
+      },
+      {
+        "id": "disconnect-5",
+        "text": "检查适用固件，前述步骤仍失败时可关闭 Smart Connect 并给出已收录的菜单"
+      }
+    ]
+  },
+  {
+    "id": "out_of_corpus",
+    "scope": {
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US"
+    },
+    "question": "怎么查询淘宝订单退款进度？可以帮我办理退款吗？",
+    "answerable": false,
+    "required_evidence_ids": [],
+    "required_points": []
+  }
+]

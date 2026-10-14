@@ -1,0 +1,39 @@
+{
+  "phase": "initial Windows online acceptance before fixes",
+  "corpus_digest": "6c0faac020975bdbc4d2f0d0f90a52b8fe1a9a9143c0d04c4d42608271acd878",
+  "evidence": "User-pasted actual Windows command and answer outputs on 2026-10-14",
+  "checks": [
+    {
+      "case": "wifi",
+      "result": "passed",
+      "note": "Menus, fields, case sensitivity and reconnect instructions supported."
+    },
+    {
+      "case": "ap",
+      "result": "needs_citation_fix",
+      "note": "Core content supported; application firmware clarification was attributed to official evidence."
+    },
+    {
+      "case": "reset",
+      "result": "needs_corpus_and_answer_fix",
+      "note": "Summary omitted reset effects on other settings; answer did not cover reboot retention explicitly; clarification citation issue."
+    },
+    {
+      "case": "firmware",
+      "result": "needs_source_fix",
+      "note": "Core preparation, power and reboot statements supported; hardware/region precautions require FAQ 2796 source."
+    },
+    {
+      "case": "disconnect",
+      "result": "needs_scope_and_corpus_fix",
+      "note": "Conditional diagnostics supported; answer confused current retrieved context with whole-corpus contents; missing Smart Connect menu in summary."
+    },
+    {
+      "case": "out_of_corpus",
+      "result": "refusal_passed_wording_needs_fix",
+      "note": "No fabricated refund or execution claim; router-symptom prompt was irrelevant to refund query."
+    }
+  ],
+  "quantitative_generation_metrics": null,
+  "limitations": "Qualitative six-case acceptance. Not 6/6 clean passes and not an answer-accuracy or hallucination-rate estimate."
+}

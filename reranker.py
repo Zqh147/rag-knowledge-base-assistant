@@ -1,51 +1,27 @@
-from sentence_transformers import CrossEncoder
-from config import RERANK_K
+from functools import lru_cache
+import math
+from config import RERANK_K, RERANKER_MODEL, MODEL_DEVICE, CPU_THREADS
 
 
-# 加载 Reranker 模型
-reranker_model = CrossEncoder(
-    "BAAI/bge-reranker-v2-m3"
-)
+@lru_cache(maxsize=1)
+def get_model():
+    if MODEL_DEVICE == "cpu":
+        import torch
+        torch.set_num_threads(CPU_THREADS)
+    from sentence_transformers import CrossEncoder
+    return CrossEncoder(RERANKER_MODEL, device=MODEL_DEVICE, max_length=512)
 
 
 def rerank(question, candidates, top_n=RERANK_K):
-
-    # 如果没有候选结果，直接返回空列表
+    if top_n < 1:
+        raise ValueError("top_n must be positive")
     if not candidates:
         return []
-
-    # 1. 构造 [Question, Chunk] 对
-    pairs = []
-
-    for candidate in candidates:
-        document = candidate["document"]
-
-        pairs.append([
-            question,
-            document
-        ])
-
-    # 2. Reranker 对每一个 Question-Chunk pair 打分
-    scores = reranker_model.predict(pairs)
-
-    # 3. 把 reranker score 和对应的 candidate 组合起来
-    reranked_results = []
-
-    for candidate, score in zip(candidates, scores):
-
-        # 复制原来的 Hybrid 结果
-        result = candidate.copy()
-
-        # 新增 reranker score
-        result["reranker_score"] = float(score)
-
-        reranked_results.append(result)
-
-    # 4. 按 reranker score 从高到低重新排序
-    reranked_results.sort(
-        key=lambda x: x["reranker_score"],
-        reverse=True
-    )
-
-    # 5. 返回重新排序后的 Top-N
-    return reranked_results[:top_n]
+    from torch.nn import Identity
+    # Explicit logits: a stable score scale, never an answer-confidence probability.
+    scores = get_model().predict([[question, c["document"]] for c in candidates],
+                                 activation_fn=Identity(), batch_size=4, show_progress_bar=False)
+    if len(scores) != len(candidates) or any(not math.isfinite(float(s)) for s in scores):
+        raise RuntimeError("reranker returned invalid scores")
+    results = [{**c, "reranker_score": float(s)} for c, s in zip(candidates, scores)]
+    return sorted(results, key=lambda c: c["reranker_score"], reverse=True)[:top_n]

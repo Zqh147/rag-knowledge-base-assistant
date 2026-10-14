@@ -1,64 +1,40 @@
-from hybrid_retriever import retrieve_hybrid
-from reranker import rerank
+from router_pipeline import retrieve_router, load_policy
+from router_corpus import make_chunks, corpus_digest
+from vector_store import verify_router_index
 from generator import rag_answer
 
-if __name__ == "__main__":
+
+def main():
+    chunks = make_chunks()
+    verify_router_index(chunks, corpus_digest(chunks))
+    load_policy()
+    print("家用路由器知识库问答与故障排查助手")
+    print("当前资料：Archer AX10 / AX20，V1，US。请输入设备标签信息；输入 exit 退出。")
+    scope = {}
+    for field, label in [("product_model", "设备型号"), ("hardware_version", "硬件版本"), ("region", "销售地区")]:
+        value = input(label + "：").strip()
+        if value.lower() == "exit":
+            return
+        scope[field] = value or None
     while True:
-        question = input("请输入问题(输入'exit'退出)：")
-        question = question.strip()
-        #   判断问题是否为空
-        if not question:
-            print("问题不能为空，请输入有效的问题。")
-            continue
-        #   判断是否输入exit，如果输入exit，则退出程序
+        question = input("请输入问题（exit 退出）：").strip()
         if question.lower() == "exit":
-            print("程序已退出。")
-            break
+            return
+        if not question:
+            print("问题不能为空。")
+            continue
+        try:
+            result = retrieve_router(question, **scope)
+            if not result["has_results"]:
+                print(result["message"])
+                for field in result["missing_fields"]:
+                    if field != "question":
+                        scope[field] = input(field + "：").strip() or None
+                continue
+            print(rag_answer(question, result["results"]))
+        except Exception as exc:
+            print(f"执行失败：{exc}。请检查配置或日志；服务失败不表示资料没有答案。")
 
-        hybrid_results = retrieve_hybrid(question)
 
-        reranked_results = rerank(
-            question,
-            hybrid_results
-        )
-
-        if not reranked_results:
-            print("未检索到相关内容")
-
-        else:
-            print("\n检索到相关内容")
-
-            for index, result in enumerate(reranked_results, start=1):
-
-                document = result["document"]
-                metadata = result["metadata"]
-
-                print(f"\n===== 检索结果 {index} =====")
-                print(document)
-
-                print(f"Reranker Score：{result['reranker_score']:.4f}")
-                print(f"来源：{metadata['source']}")
-
-                if metadata.get("page") is not None:
-                    print(f"页码：{metadata['page']}")
-
-                print(f"Chunk ID：{metadata['chunk_id']}")
-
-            answer = rag_answer(
-                question,
-                reranked_results
-            )
-            print("\nAI回答：")
-            print(answer)
-            print("\n参考来源")
-
-            for result in reranked_results:
-
-                metadata = result["metadata"]
-
-                print(f"来源：{metadata['source']}")
-
-                if metadata.get("page") is not None:
-                    print(f"页码：{metadata['page']}")
-
-                print(f"Chunk ID：{metadata['chunk_id']}")
+if __name__ == "__main__":
+    main()

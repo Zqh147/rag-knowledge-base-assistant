@@ -1,0 +1,1349 @@
+{
+  "split": "calibration",
+  "executed_at": "2026-10-14T05:35:19.651308+00:00",
+  "python": "3.11.8",
+  "versions": {
+    "torch": "2.14.1",
+    "sentence-transformers": "6.1.0",
+    "chromadb": "1.5.9",
+    "jieba": "0.42.1",
+    "rank-bm25": "0.2.2",
+    "fastapi": "0.143.0",
+    "pytest": "8.4.2"
+  },
+  "models": {
+    "embedding": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "reranker": "BAAI/bge-reranker-v2-m3"
+  },
+  "corpus_digest": "7e9828ceeec3c244484ee8394787e229cd2e6c1c8c61aab4a6357908b985bedc",
+  "min_score": -0.8162892460823059,
+  "score_scale": "raw_logit",
+  "question_count": 12,
+  "metrics": {
+    "Vector": {
+      "Recall@3": 0.8333333333333334,
+      "MRR": 0.6527777777777778,
+      "positive_questions": 6
+    },
+    "BM25": {
+      "Recall@3": 1.0,
+      "MRR": 0.9166666666666666,
+      "positive_questions": 6
+    },
+    "Hybrid": {
+      "Recall@3": 1.0,
+      "MRR": 0.8888888888888888,
+      "positive_questions": 6
+    },
+    "Reranker": {
+      "Recall@3": 1.0,
+      "MRR": 0.9166666666666666,
+      "positive_questions": 6
+    }
+  },
+  "gated_recall_at_3": 1.0,
+  "false_accepts": 0,
+  "false_rejects": 0,
+  "rows": [
+    {
+      "id": "calibration-1",
+      "split": "calibration",
+      "question": "Internet指示灯一直橙色是什么意思？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax10-v1-us-led"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-login"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-reboot_concept"
+        ],
+        "Reranker": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest"
+        ]
+      },
+      "top_score": 2.7564117908477783,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-led",
+          "score": 2.7564117908477783
+        },
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -2.495241641998291
+        },
+        {
+          "id": "ax10-v1-us-no_internet",
+          "score": -3.295869827270508
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -8.040377616882324
+        },
+        {
+          "id": "ax10-v1-us-reboot_concept",
+          "score": -8.716329574584961
+        },
+        {
+          "id": "ax10-v1-us-wireless_radio",
+          "score": -8.8236083984375
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": -9.558526039123535
+        },
+        {
+          "id": "ax10-v1-us-pppoe",
+          "score": -10.32772445678711
+        },
+        {
+          "id": "ax10-v1-us-wireless",
+          "score": -10.330366134643555
+        },
+        {
+          "id": "ax10-v1-us-guest",
+          "score": -10.471759796142578
+        }
+      ],
+      "elapsed_seconds": 33.538,
+      "accepted_evidence": [
+        "ax10-v1-us-led"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-2",
+      "split": "calibration",
+      "question": "怎么修改无线网络名称和密码？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax10-v1-us-wireless"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-login",
+          "ax10-v1-us-led"
+        ],
+        "BM25": [
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-reset"
+        ],
+        "Reranker": [
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-no_internet"
+        ]
+      },
+      "top_score": 6.775852203369141,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-wireless",
+          "score": 6.775852203369141
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": 0.8883330821990967
+        },
+        {
+          "id": "ax10-v1-us-pppoe",
+          "score": 0.10340175032615662
+        },
+        {
+          "id": "ax10-v1-us-guest",
+          "score": -1.1882295608520508
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -2.242865800857544
+        },
+        {
+          "id": "ax10-v1-us-reset",
+          "score": -2.7748863697052
+        },
+        {
+          "id": "ax10-v1-us-wireless_radio",
+          "score": -3.696387767791748
+        },
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -4.67478084564209
+        },
+        {
+          "id": "ax10-v1-us-firmware_preparation",
+          "score": -5.153730869293213
+        },
+        {
+          "id": "ax10-v1-us-no_internet",
+          "score": -6.108556747436523
+        }
+      ],
+      "elapsed_seconds": 12.525,
+      "accepted_evidence": [
+        "ax10-v1-us-wireless",
+        "ax10-v1-us-quick_setup",
+        "ax10-v1-us-pppoe"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-3",
+      "split": "calibration",
+      "question": "访客怎样才能不访问我家的主网？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax20-v1-us-guest"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-login",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-led",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax20-v1-us-guest",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-firmware"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-guest",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-led",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-login",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-firmware_preparation"
+        ],
+        "Reranker": [
+          "ax20-v1-us-guest",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-login",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-led"
+        ]
+      },
+      "top_score": 1.835318922996521,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-guest",
+          "score": 1.835318922996521
+        },
+        {
+          "id": "ax20-v1-us-ap",
+          "score": -2.0479013919830322
+        },
+        {
+          "id": "ax20-v1-us-disconnect",
+          "score": -5.311953544616699
+        },
+        {
+          "id": "ax20-v1-us-wireless",
+          "score": -5.331250190734863
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -5.563976287841797
+        },
+        {
+          "id": "ax20-v1-us-login",
+          "score": -5.578596591949463
+        },
+        {
+          "id": "ax20-v1-us-pppoe",
+          "score": -6.286287307739258
+        },
+        {
+          "id": "ax20-v1-us-reboot_concept",
+          "score": -7.782043933868408
+        },
+        {
+          "id": "ax20-v1-us-firmware_preparation",
+          "score": -8.441863059997559
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -8.613887786865234
+        }
+      ],
+      "elapsed_seconds": 12.28,
+      "accepted_evidence": [
+        "ax20-v1-us-guest"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-4",
+      "split": "calibration",
+      "question": "怎样切换成Access Point模式？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax20-v1-us-ap"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-login",
+          "ax20-v1-us-led",
+          "ax20-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-login"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-led",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-login",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-wireless_radio"
+        ],
+        "Reranker": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-login",
+          "ax20-v1-us-led"
+        ]
+      },
+      "top_score": 2.3950905799865723,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-ap",
+          "score": 2.3950905799865723
+        },
+        {
+          "id": "ax20-v1-us-wireless",
+          "score": -5.277468681335449
+        },
+        {
+          "id": "ax20-v1-us-pppoe",
+          "score": -5.36268949508667
+        },
+        {
+          "id": "ax20-v1-us-disconnect",
+          "score": -5.691061019897461
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -5.787938117980957
+        },
+        {
+          "id": "ax20-v1-us-guest",
+          "score": -5.898386001586914
+        },
+        {
+          "id": "ax20-v1-us-wireless_radio",
+          "score": -6.278721809387207
+        },
+        {
+          "id": "ax20-v1-us-no_internet",
+          "score": -6.844946384429932
+        },
+        {
+          "id": "ax20-v1-us-login",
+          "score": -7.62722110748291
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -8.875377655029297
+        }
+      ],
+      "elapsed_seconds": 11.742,
+      "accepted_evidence": [
+        "ax20-v1-us-ap"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-5",
+      "split": "calibration",
+      "question": "升级固件时需要注意什么？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax10-v1-us-firmware"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-led",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-login",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-led",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-pppoe"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-led",
+          "ax10-v1-us-login",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-wireless_radio"
+        ],
+        "Reranker": [
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-led",
+          "ax10-v1-us-reboot_concept",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-login"
+        ]
+      },
+      "top_score": 3.827782154083252,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-firmware_preparation",
+          "score": 3.827782154083252
+        },
+        {
+          "id": "ax10-v1-us-firmware",
+          "score": 3.5223166942596436
+        },
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -2.800839900970459
+        },
+        {
+          "id": "ax10-v1-us-reset",
+          "score": -3.7422475814819336
+        },
+        {
+          "id": "ax10-v1-us-led",
+          "score": -6.744481086730957
+        },
+        {
+          "id": "ax10-v1-us-reboot_concept",
+          "score": -6.936158657073975
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": -7.002671241760254
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -7.122928619384766
+        },
+        {
+          "id": "ax10-v1-us-wireless_radio",
+          "score": -8.486320495605469
+        },
+        {
+          "id": "ax10-v1-us-login",
+          "score": -8.683914184570312
+        }
+      ],
+      "elapsed_seconds": 11.892,
+      "accepted_evidence": [
+        "ax10-v1-us-firmware_preparation",
+        "ax10-v1-us-firmware"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-6",
+      "split": "calibration",
+      "question": "设置完还是不能上网，应该先检查哪里？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [
+        "ax20-v1-us-no_internet"
+      ],
+      "answerable": true,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-login",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-led",
+          "ax20-v1-us-guest"
+        ],
+        "BM25": [
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-login",
+          "ax20-v1-us-led",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-guest"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-login",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-reset"
+        ],
+        "Reranker": [
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-login",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-guest"
+        ]
+      },
+      "top_score": 4.144720077514648,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-no_internet",
+          "score": 4.144720077514648
+        },
+        {
+          "id": "ax20-v1-us-disconnect",
+          "score": -0.28919774293899536
+        },
+        {
+          "id": "ax20-v1-us-wireless_radio",
+          "score": -1.9113249778747559
+        },
+        {
+          "id": "ax20-v1-us-login",
+          "score": -2.6166059970855713
+        },
+        {
+          "id": "ax20-v1-us-reset",
+          "score": -3.221142292022705
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -3.266568899154663
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -4.149636268615723
+        },
+        {
+          "id": "ax20-v1-us-pppoe",
+          "score": -4.981208801269531
+        },
+        {
+          "id": "ax20-v1-us-firmware_preparation",
+          "score": -5.850329875946045
+        },
+        {
+          "id": "ax20-v1-us-guest",
+          "score": -6.292423725128174
+        }
+      ],
+      "elapsed_seconds": 12.357,
+      "accepted_evidence": [
+        "ax20-v1-us-no_internet",
+        "ax20-v1-us-disconnect"
+      ],
+      "status": "ok"
+    },
+    {
+      "id": "calibration-7",
+      "split": "calibration",
+      "question": "路由器怎么查询快递单号？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-login",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-led",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware_preparation"
+        ],
+        "BM25": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-login",
+          "ax10-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-led",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-login",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-wireless_radio"
+        ],
+        "Reranker": [
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-led",
+          "ax10-v1-us-login"
+        ]
+      },
+      "top_score": -6.952037811279297,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -6.952037811279297
+        },
+        {
+          "id": "ax10-v1-us-wireless_radio",
+          "score": -6.970226287841797
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": -7.014255523681641
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -7.256586074829102
+        },
+        {
+          "id": "ax10-v1-us-no_internet",
+          "score": -7.43947696685791
+        },
+        {
+          "id": "ax10-v1-us-pppoe",
+          "score": -7.867313385009766
+        },
+        {
+          "id": "ax10-v1-us-wireless",
+          "score": -8.129358291625977
+        },
+        {
+          "id": "ax10-v1-us-guest",
+          "score": -8.66871452331543
+        },
+        {
+          "id": "ax10-v1-us-led",
+          "score": -9.046754837036133
+        },
+        {
+          "id": "ax10-v1-us-login",
+          "score": -9.210468292236328
+        }
+      ],
+      "elapsed_seconds": 4.887,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    },
+    {
+      "id": "calibration-8",
+      "split": "calibration",
+      "question": "今天北京的天气是什么？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-led",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-login",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-guest"
+        ],
+        "BM25": [
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-login",
+          "ax20-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-led",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-login",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-wireless_radio"
+        ],
+        "Reranker": [
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-led",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-login",
+          "ax20-v1-us-ap"
+        ]
+      },
+      "top_score": -10.947986602783203,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-disconnect",
+          "score": -10.947986602783203
+        },
+        {
+          "id": "ax20-v1-us-guest",
+          "score": -11.01069450378418
+        },
+        {
+          "id": "ax20-v1-us-wireless_radio",
+          "score": -11.02191162109375
+        },
+        {
+          "id": "ax20-v1-us-wireless",
+          "score": -11.023268699645996
+        },
+        {
+          "id": "ax20-v1-us-pppoe",
+          "score": -11.023456573486328
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -11.028966903686523
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -11.031919479370117
+        },
+        {
+          "id": "ax20-v1-us-no_internet",
+          "score": -11.032751083374023
+        },
+        {
+          "id": "ax20-v1-us-login",
+          "score": -11.03449535369873
+        },
+        {
+          "id": "ax20-v1-us-ap",
+          "score": -11.035216331481934
+        }
+      ],
+      "elapsed_seconds": 8.822,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    },
+    {
+      "id": "calibration-9",
+      "split": "calibration",
+      "question": "怎样用路由器查询宽带欠费金额？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-login",
+          "ax10-v1-us-led",
+          "ax10-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-led",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-login"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-led",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-login",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-no_internet"
+        ],
+        "Reranker": [
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-login",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-led"
+        ]
+      },
+      "top_score": -4.253594398498535,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-wireless_radio",
+          "score": -4.253594398498535
+        },
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -4.9662299156188965
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -5.2753376960754395
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": -5.324924468994141
+        },
+        {
+          "id": "ax10-v1-us-pppoe",
+          "score": -5.360454082489014
+        },
+        {
+          "id": "ax10-v1-us-no_internet",
+          "score": -6.780224323272705
+        },
+        {
+          "id": "ax10-v1-us-wireless",
+          "score": -6.800897598266602
+        },
+        {
+          "id": "ax10-v1-us-login",
+          "score": -8.045501708984375
+        },
+        {
+          "id": "ax10-v1-us-guest",
+          "score": -8.097423553466797
+        },
+        {
+          "id": "ax10-v1-us-led",
+          "score": -8.099133491516113
+        }
+      ],
+      "elapsed_seconds": 11.741,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    },
+    {
+      "id": "calibration-10",
+      "split": "calibration",
+      "question": "这台设备的保修到期日期是什么？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-wireless"
+        ],
+        "BM25": [
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-login",
+          "ax20-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-disconnect"
+        ],
+        "Reranker": [
+          "ax20-v1-us-reset",
+          "ax20-v1-us-firmware_preparation",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-reboot_concept",
+          "ax20-v1-us-led",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-quick_setup"
+        ]
+      },
+      "top_score": -6.589747428894043,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-reset",
+          "score": -6.589747428894043
+        },
+        {
+          "id": "ax20-v1-us-firmware_preparation",
+          "score": -7.500249862670898
+        },
+        {
+          "id": "ax20-v1-us-firmware",
+          "score": -8.04069709777832
+        },
+        {
+          "id": "ax20-v1-us-disconnect",
+          "score": -8.543161392211914
+        },
+        {
+          "id": "ax20-v1-us-reboot_concept",
+          "score": -8.618907928466797
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -10.086061477661133
+        },
+        {
+          "id": "ax20-v1-us-no_internet",
+          "score": -10.571557998657227
+        },
+        {
+          "id": "ax20-v1-us-ap",
+          "score": -10.671607971191406
+        },
+        {
+          "id": "ax20-v1-us-wireless",
+          "score": -10.897154808044434
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -10.914710998535156
+        }
+      ],
+      "elapsed_seconds": 11.863,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    },
+    {
+      "id": "calibration-11",
+      "split": "calibration",
+      "question": "如何在路由器上安装第三方插件？",
+      "product_model": "Archer AX10",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax10-v1-us-ap",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-login",
+          "ax10-v1-us-wireless_radio",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware_preparation",
+          "ax10-v1-us-no_internet"
+        ],
+        "BM25": [
+          "ax10-v1-us-led",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-reset",
+          "ax10-v1-us-login",
+          "ax10-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-login",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-led",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless"
+        ],
+        "Reranker": [
+          "ax10-v1-us-firmware",
+          "ax10-v1-us-quick_setup",
+          "ax10-v1-us-ap",
+          "ax10-v1-us-guest",
+          "ax10-v1-us-pppoe",
+          "ax10-v1-us-disconnect",
+          "ax10-v1-us-wireless",
+          "ax10-v1-us-no_internet",
+          "ax10-v1-us-login",
+          "ax10-v1-us-led"
+        ]
+      },
+      "top_score": -3.467897415161133,
+      "scored_evidence": [
+        {
+          "id": "ax10-v1-us-firmware",
+          "score": -3.467897415161133
+        },
+        {
+          "id": "ax10-v1-us-quick_setup",
+          "score": -4.576545238494873
+        },
+        {
+          "id": "ax10-v1-us-ap",
+          "score": -4.895696640014648
+        },
+        {
+          "id": "ax10-v1-us-guest",
+          "score": -5.311717510223389
+        },
+        {
+          "id": "ax10-v1-us-pppoe",
+          "score": -6.156253814697266
+        },
+        {
+          "id": "ax10-v1-us-disconnect",
+          "score": -6.306808948516846
+        },
+        {
+          "id": "ax10-v1-us-wireless",
+          "score": -6.639137268066406
+        },
+        {
+          "id": "ax10-v1-us-no_internet",
+          "score": -7.614006996154785
+        },
+        {
+          "id": "ax10-v1-us-login",
+          "score": -7.968538761138916
+        },
+        {
+          "id": "ax10-v1-us-led",
+          "score": -9.882279396057129
+        }
+      ],
+      "elapsed_seconds": 11.799,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    },
+    {
+      "id": "calibration-12",
+      "split": "calibration",
+      "question": "怎么在这个路由器上部署Docker容器？",
+      "product_model": "Archer AX20",
+      "hardware_version": "V1",
+      "region": "US",
+      "gold_evidence_ids": [],
+      "answerable": false,
+      "rankings": {
+        "Vector": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-disconnect",
+          "ax20-v1-us-login",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-led"
+        ],
+        "BM25": [
+          "ax20-v1-us-led",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-reset",
+          "ax20-v1-us-login",
+          "ax20-v1-us-no_internet"
+        ],
+        "Hybrid": [
+          "ax20-v1-us-ap",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-led",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-login",
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-wireless"
+        ],
+        "Reranker": [
+          "ax20-v1-us-firmware",
+          "ax20-v1-us-ap",
+          "ax20-v1-us-quick_setup",
+          "ax20-v1-us-guest",
+          "ax20-v1-us-wireless_radio",
+          "ax20-v1-us-pppoe",
+          "ax20-v1-us-wireless",
+          "ax20-v1-us-no_internet",
+          "ax20-v1-us-login",
+          "ax20-v1-us-led"
+        ]
+      },
+      "top_score": -5.170863151550293,
+      "scored_evidence": [
+        {
+          "id": "ax20-v1-us-firmware",
+          "score": -5.170863151550293
+        },
+        {
+          "id": "ax20-v1-us-ap",
+          "score": -5.753279685974121
+        },
+        {
+          "id": "ax20-v1-us-quick_setup",
+          "score": -6.356481552124023
+        },
+        {
+          "id": "ax20-v1-us-guest",
+          "score": -6.474087715148926
+        },
+        {
+          "id": "ax20-v1-us-wireless_radio",
+          "score": -7.3544793128967285
+        },
+        {
+          "id": "ax20-v1-us-pppoe",
+          "score": -7.919478893280029
+        },
+        {
+          "id": "ax20-v1-us-wireless",
+          "score": -7.934816837310791
+        },
+        {
+          "id": "ax20-v1-us-no_internet",
+          "score": -9.215835571289062
+        },
+        {
+          "id": "ax20-v1-us-login",
+          "score": -9.803081512451172
+        },
+        {
+          "id": "ax20-v1-us-led",
+          "score": -10.262676239013672
+        }
+      ],
+      "elapsed_seconds": 8.54,
+      "accepted_evidence": [],
+      "status": "no_evidence"
+    }
+  ]
+}

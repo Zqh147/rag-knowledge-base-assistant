@@ -1,0 +1,9 @@
+{
+  "model": "BAAI/bge-reranker-v2-m3",
+  "score_scale": "raw_logit",
+  "min_score": -0.8162892460823059,
+  "corpus_digest": "7e9828ceeec3c244484ee8394787e229cd2e6c1c8c61aab4a6357908b985bedc",
+  "calibration_questions": 12,
+  "method": "minimize false accept + false reject on calibration only; higher threshold breaks ties",
+  "limitations": "Small hand-authored set. Score is relevance, not answer confidence. Threshold cannot ensure complete answer support."
+}

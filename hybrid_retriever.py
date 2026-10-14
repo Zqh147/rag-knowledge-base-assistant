@@ -5,6 +5,9 @@ from config import CANDIDATE_K, FINAL_K
 
 def get_chunk_uid(metadata):
 
+    if metadata.get("evidence_id"):
+        return f"{metadata['evidence_id']}_chunk_{metadata['chunk_id']}"
+
     source = metadata["source"]
     page = metadata.get("page")
     chunk_id = metadata["chunk_id"]
@@ -80,17 +83,20 @@ def reciprocal_rank_fusion(
 def retrieve_hybrid(
     question,
     candidate_k=CANDIDATE_K,
-    final_k=FINAL_K
+    final_k=FINAL_K,
+    filters=None
 ):
 
     vector_results = retrieve(
         question,
-        top_k=candidate_k
+        top_k=candidate_k,
+        filters=filters
     )
 
     bm25_results = retrieve_bm25(
         question,
-        top_k=candidate_k
+        top_k=candidate_k,
+        filters=filters
     )
 
     fused_results = reciprocal_rank_fusion(

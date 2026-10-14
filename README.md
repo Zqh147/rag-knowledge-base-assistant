@@ -1,293 +1,116 @@
-# Knowledge Base Assistant（知识库问答助手）
+# 家用路由器知识库问答与故障排查助手
 
-一个从零手写的 RAG（检索增强生成）小项目：把本地文档切块、向量化后存入向量数据库，提问时先检索相关片段，再交给大模型基于检索结果生成回答，同时展示检索片段的来源信息。
+从 Knowledge Base Assistant V2 增量改造，面向需要查询设备操作说明与排查家庭网络故障的用户。当前官方资料范围为 **TP-Link Archer AX10 / AX20，硬件 V1，US**。该范围是本次新增选择；不代表覆盖所有型号、地区或固件。
 
-检索部分已经从单一向量检索升级为 **Hybrid Search + Reranker** 的两段式管线：稠密向量检索和 BM25 稀疏检索并行召回，用 RRF 融合排序，再用 CrossEncoder 重排序，最后把 Top-N 片段交给大模型。
+保留 Python、SentenceTransformer、Chroma、jieba、BM25、RRF、Cross-Encoder 和 DeepSeek。检索服务只返回证据，项目二负责自己的最终生成。
 
-项目没有使用 LangChain 等框架，每个环节都是自己写的独立模块，适合用来理解 RAG 的完整链路。
+## 为什么这样设计
 
-## 功能特性
+| 问题 | 实现 | 完成标准 |
+|---|---|---|
+| 短块截断步骤 | 每个已整理的章节作为完整操作单元，保留条件与注意事项；超长章节拒绝静默截断 | 文本包含完整步骤，并通过字符与 Embedding token 上限检查 |
+| 两路文本不一致 | BM25 读取同一 Chroma collection 的原文与元数据 | 两路使用相同 evidence_id |
+| 相似型号挤占候选 | 两路均先限定型号、硬件版本和地区，再取 Top-K | 错型号、错版本、错地区不能进入候选 |
+| 不知道用户设备 | 解析问题或接收显式字段；缺信息、未知范围、冲突分别返回状态 | 不猜默认型号或版本 |
+| 检索总能返回片段 | 用独立校准题选 raw-logit 相关性阈值 | 库外负例检查拒绝；分数不解释为概率 |
+| 回答无法核对 | 保留章节、官方 URL、引用编号，生成后检查引用编号范围 | 语法可检查；事实支持仍需人工验收 |
+| 索引或服务异常 | 校验语料指纹、索引内容；异常返回 HTTP 503 | 不把故障当作知识库没答案 |
 
-- 支持 **TXT / PDF** 文档加载（PDF 按页解析，回答时可定位到页码）
-- 滑动窗口文本切块，块之间保留重叠，降低关键信息恰好被切分边界截断的影响
-- 多语言向量模型做 Embedding，中英文文档都能检索
-- ChromaDB 持久化向量库，余弦相似度检索
-- **BM25 稀疏检索**：jieba 分词 + `rank-bm25`，补齐向量检索对关键词不敏感的问题
-- **Hybrid Search**：向量与 BM25 各自召回候选，用 RRF（Reciprocal Rank Fusion）融合
-- **Reranker 重排序**：`BAAI/bge-reranker-v2-m3` 对 Question-Chunk 逐对打分后重排
-- **检索评估**：Vector / BM25 / Hybrid / Hybrid+Reranker 四路对比，输出 Recall@1/3/5 与 MRR
-- 接入 DeepSeek 大模型基于参考资料生成回答，并展示检索结果的来源、页码、Chunk ID 与分数
-- 命令行交互式问答，输入 `exit` 退出
+## 快速运行（PowerShell）
 
-## 技术栈
-
-| 环节 | 选型 |
-| --- | --- |
-| 文档解析 | PyMuPDF (`pymupdf`) |
-| 向量模型 | `sentence-transformers` / `paraphrase-multilingual-MiniLM-L12-v2` |
-| 向量数据库 | ChromaDB（本地持久化） |
-| 稀疏检索 | `jieba` + `rank-bm25` |
-| 重排序模型 | `BAAI/bge-reranker-v2-m3`（`sentence-transformers` 的 CrossEncoder） |
-| 大模型 | DeepSeek（通过 `openai` SDK 调用） |
-| 环境管理 | `python-dotenv` |
-
-## 目录结构
-
-```
-knowledge-base-assistant/
-├── data/                  # 待入库的文档（放 .txt / .pdf）
-├── chromadb/              # ChromaDB 持久化数据（自动生成，已被 git 忽略）
-├── evaluation/            # 检索效果评估
-|   ├──__init__.py
-│   ├── evaluation_data.py # 评测问题 + Ground Truth（source / page / chunk_id）
-│   ├── evaluate.py        # 指标计算：find_rank / recall_at_k / reciprocal_rank
-│   ├── run_evaluation.py  # 入口：跑完整评测并打印四路结果对比
-│   └── bad_cases.py       # 人工记录的失败案例分析
-├── experiments/           # 临时验证脚本，不属于主流程
-|   ├──__init__.py
-│   └── test_retrieval_pipeline.py
-├── config.py              # 全局配置：模型名、路径、切块参数、检索参数
-├── loader.py              # 文档加载：txt / pdf -> [{text, page}]
-├── chunker.py             # 文本切块：滑动窗口 + 重叠
-├── embedder.py            # 向量化：文本 -> 向量
-├── vector_store.py        # 向量库封装：写入 / 计数 / 查询
-├── retriever.py           # 稠密检索：问题向量化 -> 查询 -> 阈值过滤
-├── bm25_retriever.py      # 稀疏检索：jieba 分词 -> BM25 打分
-├── hybrid_retriever.py    # 混合检索：RRF 融合向量与 BM25 结果
-├── reranker.py            # 重排序：CrossEncoder 对候选片段重新打分
-├── generator.py           # 生成：拼参考资料 + 调用大模型
-├── build_index.py         # 入口①：批量建索引
-├── main.py                # 入口②：交互式问答
-├── requirements.txt       # 依赖清单
-└── .env.example           # 环境变量模板
-```
-
-## 工作流程
-
-**建索引（离线，只需跑一次）：**
-
-```
-data/ 文档
-  └─ loader.py      解析出文本（PDF 保留页码）
-  └─ chunker.py     切分为多个 chunk
-  └─ embedder.py    每个 chunk 转成向量
-  └─ vector_store.py 连原文、向量、元数据一起写入 ChromaDB
-```
-
-**问答（在线）：**
-
-```
-用户问题
-  ├─ retriever.py      稠密检索：问题向量化 -> ChromaDB 取 CANDIDATE_K 个
-  ├─ bm25_retriever.py 稀疏检索：jieba 分词 -> BM25 取 CANDIDATE_K 个
-  └─ hybrid_retriever.py
-       └─ RRF 融合两路结果，按 rrf_score 排序，取 FINAL_K 个候选
-  └─ reranker.py       CrossEncoder 对每个候选打分 -> 重排 -> 取 RERANK_K 个
-  └─ generator.py      把命中的 chunk 拼成参考资料 -> 交给 DeepSeek 生成回答
-  └─ main.py           打印检索结果（Reranker 分数/来源/页码）与 AI 回答
-```
-
-向量检索靠语义相似，BM25 靠关键词命中，两者召回的结果有互补性；RRF 只依赖排名、不依赖两路分数是否可比，因此融合时不需要做归一化。
-
-## 快速开始
-
-### 1. 环境要求
-
-- Python 3.x
-- 可访问 DeepSeek API 的网络环境
-- 首次运行需要联网下载两个模型：
-  - Embedding 模型 `paraphrase-multilingual-MiniLM-L12-v2`（约 470 MB）
-  - Reranker 模型 `BAAI/bge-reranker-v2-m3`（约 2 GB，`main.py` 会加载）
-
-### 2. 安装依赖
+在项目根目录，使用现有虚拟环境：
 
 ```powershell
-pip install -r requirements.txt
-```
-
-### 3. 配置 API Key
-
-复制模板并填入自己的 Key（Key 在 <https://platform.deepseek.com> 申请）：
-
-```powershell
-Copy-Item .env.example .env
-```
-
-`.env` 内容：
-
-```
-DEEPSEEK_API_KEY=your_api_key_here
-```
-
-> `.env` 已在 `.gitignore` 中，不会被提交到仓库。
-
-### 4. 放入文档
-
-把你的 `.txt` 或 `.pdf` 文件放进 `data/` 目录。
-
-> 目前只识别 `.txt` 和 `.pdf`，其他格式（如 `.docx`）会被静默跳过。
-
-### 5. 建立索引
-
-```powershell
+python -m pip install -r requirements.txt -r requirements-service.txt
+python -m pytest -q
 python build_index.py
+python -m uvicorn rag_service:app --host 127.0.0.1 --port 8001
 ```
 
-输出示例：
+首次运行需要下载原有的两种模型。检索、建库与评测不需要生成模型的 API Key。默认使用 CPU；GPU 可设置 `RAG_MODEL_DEVICE=cuda`，但须有相应 PyTorch 环境。
 
+在另一个终端检索：
+
+```powershell
+$body = @{
+    question = "怎么修改Wi-Fi名称和密码？"
+    top_k = 3
+    product_model = "Archer AX10"
+    hardware_version = "V1"
+    region = "US"
+} | ConvertTo-Json
+Invoke-RestMethod -Uri "http://127.0.0.1:8001/retrieve" -Method Post -ContentType "application/json; charset=utf-8" -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
 ```
-ID数量： 42
-Chunk数量： 42
-Embedding数量： 42
-Metadata数量： 42
-数据库记录数量： 42
+
+旧请求形状仍支持：
+
+```json
+{"question":"AX10 V1 US 怎么修改Wi-Fi密码？","top_k":3}
 ```
 
-重复运行是安全的：写入使用 `upsert`，相同 ID 会覆盖而不是追加。
+输入设备信息不足，例如仅“怎么修改Wi-Fi密码”，会返回 `needs_clarification`，而不是猜测型号。旧的旅行知识已被隔离，因此不再是此领域服务的资料。
 
-### 6. 开始问答
+`GET /products` 可查询当前支持的设备组合；`GET /health` 为就绪检查。
+
+## 项目二兼容性
+
+保留 `backend=project1`、`pipeline`、`results`、`has_results`，证据仍有 `content/source/page/chunk_id/rrf_score/reranker_score`。新增字段包含 `status/message/missing_fields/resolved_scope`，以及每条证据的型号、章节、URL、引用编号。
+
+项目二原有适配器透传返回字典，能接收新增状态。旧工具 schema 只发送问题和 Top-K，所以问题必须携带已确认的型号、硬件版本与地区。是否能在多轮会话里始终保留这些设备信息，须在项目二的在线 Agent 验收中继续检查。
+
+这是本地 Python 适配器通过 **HTTP** 调用项目一，不是 MCP 检索。
+
+| 状态 | 含义 |
+|---|---|
+| `ok` | 有达到相关性阈值的证据，仍不保证能回答问题每个部分 |
+| `needs_clarification` | 缺设备信息或具体问题 |
+| `unsupported_product` | 未收录该组合 |
+| `parameter_conflict` | 问题与参数冲突或包含多个设备组合 |
+| `no_evidence` | 没有达到相关性要求的证据 |
+| HTTP 422 | 请求参数错误 |
+| HTTP 503 / `retrieval_unavailable` | 检索服务未就绪或执行故障 |
+
+接口不会调用 DeepSeek，也不会静默回退到演示库。
+
+## 本地问答与在线验收
+
+保留你原有 `.env`，设置 `DEEPSEEK_API_KEY` 后：
 
 ```powershell
 python main.py
 ```
 
-```
-请输入问题(输入'exit'退出)：旅行要带哪些东西？
+先输入设备标签信息，再提问。回答包含引用与官方来源。缺引用或引用越界时不展示操作建议。此检查仅验证引用语法，不证明每段结论都被原文支持。
 
-检索到相关内容
+本次环境没有生成模型凭据，**未完成在线答案验收**。本机至少检查：修改 Wi-Fi 密码、AP 模式、重启与恢复出厂区别、固件升级、无线断连、库外问题。逐项核对引用原文、完整步骤、注意事项；断连现象不足时应先追问，不能给出确定根因。不要公开 API Key。
 
-===== 检索结果 1 =====
-Chunk 原文……
-Reranker Score：0.9821
-来源：travel_notes.txt
-Chunk ID：12
-
-AI回答：
-（依据参考资料生成的回答）
-
-参考来源
-来源：travel_notes.txt
-Chunk ID：12
-```
-
-输入 `exit` 退出。
-
-> **注意**：`bm25_retriever.py` 在 **import 时**就扫描 `./data` 并构建 BM25 索引，路径是相对当前工作目录的，所以上述脚本都要在项目根目录下执行。
-
-### 7. 运行检索评估（可选）
-
-评测脚本用了包内相对导入，必须用 `-m` 从项目根目录以模块方式运行：
+## 领域检索评测
 
 ```powershell
-python -m evaluation.run_evaluation
+python -m evaluation.evaluate_router --split calibration
+python -m evaluation.evaluate_router --split holdout
+python -m evaluation.check_service
+python -m evaluation.check_service --project2-source E:\github\agent-assistant-v1
 ```
 
-它会依次跑 Vector、BM25、Hybrid、Hybrid+Reranker 四路检索，对 `evaluation/evaluation_data.py` 里的每个问题打印 Ground Truth 的排名，最后输出平均指标：
+先固定校准阈值，再运行保留测试集；不要根据保留集结果反复调整阈值后仍称其为独立测试。语料变化后必须重建、重新校准。校准策略的语料指纹不一致时，服务拒绝启动。
 
-```
-========== Evaluation Result ==========
+本次实测详见 `ROUTER_TEST_REPORT.md` 和 `evaluation/router_*_results.json`。它们是手工小样本验证，不是业务回答准确率，也不是原项目二全量 Agent 回归。
 
-当前小规模评测集结果：
+## 文件职责
 
-| Method | Recall@1 | Recall@3 | Recall@5 | MRR |
-| --- | ---: | ---: | ---: | ---: |
-| Vector | 0.7500 | 0.7500 | 1.0000 | 0.8000 |
-| BM25 | 0.7500 | 1.0000 | 1.0000 | 0.8750 |
-| Hybrid | 0.7500 | 0.7500 | 1.0000 | 0.8125 |
-| Hybrid + Reranker | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| 文件 | 职责 |
+|---|---|
+| `data/router/knowledge.json`、`SOURCES.md` | 短篇官方资料整理和来源说明 |
+| `router_corpus.py`、`chunker.py` | 元数据校验、稳定证据标识、完整章节分块 |
+| `product_scope.py` | 型号/版本/地区解析、缺失与冲突检测 |
+| `vector_store.py`、`retriever.py` | Chroma 持久化、范围内向量召回 |
+| `bm25_retriever.py` | 同一范围内的 BM25；按请求构建，适合当前本地小库 |
+| `hybrid_retriever.py`、`reranker.py` | RRF 融合与原模型重排 |
+| `router_pipeline.py` | 设备范围、证据阈值与状态处理 |
+| `rag_service.py` | 项目二兼容的证据接口 |
+| `generator.py`、`main.py` | 项目一的本地问答与引用展示 |
 
-运行前请确认 `data/test.pdf` 存在且已经跑过 `build_index.py`，否则 Ground Truth 无法命中。
-> 当前评测集仅包含 4 个手工标注问题，因此这些结果主要用于验证检索链路和定位排序问题，不代表大规模 benchmark 性能。
+默认 collection 为 `router_manuals_v1`。原 TXT/PDF 的读取、定长分块及理论题评测保留，只能显式切换 `RAG_PROFILE=demo` 后建演示索引、运行旧评测；它们不属于路由器验收，领域 API 不允许该 profile。没有新增 OCR、订单、工单、真实设备控制或部署能力。
 
-## 配置说明
-
-所有可调参数集中在 `config.py`：
-
-| 参数 | 默认值 | 说明 |
-| --- | --- | --- |
-| `EMBEDDING_MODEL` | `paraphrase-multilingual-MiniLM-L12-v2` | 向量模型，支持中英文 |
-| `DB_PATH` | `./chromadb` | 向量库持久化目录 |
-| `COLLECTION_NAME` | `pdf_test` | ChromaDB 集合名，换个名字相当于换一个知识库 |
-| `CHUNK_SIZE` | `100` | 每块字符数，调大上下文更完整、检索更粗 |
-| `CHUNK_OVERLAP` | `25` | 相邻块的重叠字符数，必须小于 `CHUNK_SIZE` |
-| `TOP_K` | `3` | 单独调用 Vector / BM25 检索时的默认返回数量（评估脚本显式传参，不受此限） |
-| `THRESHOLD` | `0` | 稠密检索相似度下限，低于该值的结果被丢弃 |
-| `CANDIDATE_K` | `10` | Hybrid 中向量和 BM25 **各自**召回的候选数量 |
-| `FINAL_K` | `10` | RRF 融合后保留、送给 Reranker 的候选数量 |
-| `RERANK_K` | `3` | Reranker 最终保留、送给大模型的 Chunk 数量 |
-
-调参小提示：
-
-- `THRESHOLD` 默认为 `0`，即基本不做过滤（只挡掉负相似度），噪声主要交给 Reranker 兜底。想让稠密检索阶段更严格可以调高。
-- 召回不够就调大 `CANDIDATE_K` 或 `FINAL_K`；上下文太长、回答变散可以调小 `RERANK_K`。
-- 回答太笼统可以调小 `CHUNK_SIZE`；切块太碎导致语义不完整则调大。
-- 改完参数后建议重跑 `python -m evaluation.run_evaluation` 对比指标，而不是凭感觉调。
-
-## 模块说明
-
-| 文件 | 关键函数 | 职责 |
-| --- | --- | --- |
-| `loader.py` | `load_document()` | 按扩展名分发，返回 `[{"text": ..., "page": ...}]`，TXT 的 `page` 为 `None` |
-| `chunker.py` | `split_text()` | 定长滑动窗口切块，`start = end - chunk_overlap` 实现重叠 |
-| `embedder.py` | `embed_text()` | 模块级加载模型，避免每次调用重复加载 |
-| `vector_store.py` | `add_documents()` / `query_documents()` | 集合以 cosine 距离建索引，返回原文、距离、元数据 |
-| `retriever.py` | `retrieve()` | 相似度 = `1 - distance`，按阈值过滤后返回 `(文档, 相似度, 元数据)` |
-| `bm25_retriever.py` | `retrieve_bm25()` | import 时读 `./data` 建 BM25 索引；中文走 jieba 分词并过滤停用词 |
-| `hybrid_retriever.py` | `retrieve_hybrid()` / `reciprocal_rank_fusion()` | 两路各取 `CANDIDATE_K`，按 `1/(60+rank)` 累加 RRF 分数后排序取 `FINAL_K` |
-| `reranker.py` | `rerank()` | 构造 `[Question, Chunk]` 对交给 CrossEncoder 打分，按分数重排取 Top-N |
-| `generator.py` | `rag_answer()` | 拼接带来源的参考资料，用系统提示词约束模型只能依据资料回答 |
-| `evaluation/evaluate.py` | `find_rank()` / `recall_at_k()` / `reciprocal_rank()` | 用 `source + page + chunk_id` 生成 chunk 唯一标识做命中判定 |
-
-`hybrid_retriever.py` 的 RRF 常数 `k=60` 写死在函数签名里，`top_n` 以外的截断由 `config.py` 的 `FINAL_K` / `RERANK_K` 控制。
-
-## 检索评估
-
-`evaluation/` 是一套最小可用的检索评测，用来判断「加 BM25、加 Reranker 到底有没有用」。
-
-- **Ground Truth 的表示方式**：`{"source": "test.pdf", "page": 3, "chunk_id": 0}`，通过 `get_chunk_uid()` 拼成 `test.pdf_page_3_chunk_0` 这类唯一键，再和检索结果的 metadata 比对。
-- **指标**：`Recall@K` 只判断有没有命中，`RR`（Reciprocal Rank）额外奖励排得靠前的位置，平均值即 `MRR`。
-- **四路对比**：同一批问题分别跑 Vector、BM25、Hybrid、Hybrid+Reranker，输出各自的 Recall@1/3/5 与 MRR，便于定位是召回阶段还是排序阶段的问题。
-- **`evaluation/bad_cases.py`**：手工整理的失败案例，记录某条 Ground Truth 在四路中的排名、失效发生在哪个阶段、以及原因分析。
-目前记录的一条典型案例是：
-- Vector Retrieval：Ground Truth 排名第 5
-- BM25：排名第 2
-- RRF Hybrid：排名第 4
-- Cross-Encoder Reranker：重新提升到第 1
-
-这个案例说明：Dense Retrieval 和 BM25 的召回结果具有互补性，但 RRF 只根据排名进行融合，并不直接判断 Question-Chunk 的深层相关性，因此融合后的正确 Chunk 不一定排名更高；Cross-Encoder Reranker 可以进一步对候选结果进行精排。
-
-## 常见问题
-
-**Q：运行 `main.py` 报 `没有获取到 DEEPSEEK_API_KEY`？**
-没有创建 `.env` 或 Key 为空，按上文第 3 步配置。
-
-**Q：第一次运行卡在下载模型？**
-`main.py` 会加载约 2 GB 的 `BAAI/bge-reranker-v2-m3`，需要联网且耗时较长。只想先看排序效果可以跑 `python -m evaluation.run_evaluation`，它不依赖 DeepSeek Key，能直接输出各阶段排名。模型下载后缓存在本地，后续启动不再重复下载。
-
-**Q：`python experiments/test_retrieval_pipeline.py` 报 `ModuleNotFoundError: No module named 'hybrid_retriever'`？**
-脚本必须从项目根目录以模块方式运行：`python -m experiments.test_retrieval_pipeline`。直接按路径执行时 `sys.path` 指向 `experiments/`，找不到根目录下的模块。
-
-**Q：检索不到任何内容？**
-先确认 `build_index.py` 跑成功且 `数据库记录数量` 大于 0；再确认问题和文档语言/主题接近。BM25 依赖分词和关键词重合，问法和原文用词差异过大时只能靠向量那一路召回。
-
-**Q：PDF 里扫不出文字？**
-扫描版 PDF 本质是图片，`pymupdf` 提取不到文本，需要先做 OCR。可以看 `build_index.py` 打印的 Chunk 数量是否异常偏少来判断。
-
-**Q：换了文档想重建索引？**
-直接删掉 `chromadb/` 目录再跑 `build_index.py`，或者改 `COLLECTION_NAME` 建一个新集合。注意 BM25 索引是运行时从 `data/` 现读现建的，不需要重建，但 `evaluation/evaluation_data.py` 里的 Ground Truth 要同步改。
-
-**Q：回答里出现资料以外的内容？**
-系统提示词已约束"只用参考资料"，但仍可能发生。可以调小 `RERANK_K` 减少进入上下文的噪声块，或检查 `THRESHOLD` 是否为 0 导致低质量片段被放进来。
-
-**Q：评估指标看起来不对？**
-检查三点：`data/` 里是否有 `test.pdf`、是否跑过 `build_index.py`、`evaluation_data.py` 里的 `page` / `chunk_id` 是否和当前切块结果一致。改了 `CHUNK_SIZE` / `CHUNK_OVERLAP` 后 chunk 编号会整体变化，Ground Truth 需要重新标注。
-
-## 后续可以做的事
-
-- 支持 `.docx`、`.md` 等更多格式
-- 切块改为按语义/段落切分，而不是按固定字符数
-- 扩充评测集：当前只有 4 个问题，指标波动大，且 Ground Truth 依赖手工标注
-- 把 RRF 的 `k`、两路权重做成 `config.py` 里的可调参数
-- BM25 索引改为持久化或增量更新，避免每次 import 都重新扫描 `data/`
-- 换用更大的向量模型或接向量数据库服务
-- 套一层 Web UI（Streamlit / FastAPI）
+当前 Embedding 输入上限设置为底层模型支持的 512 token，并在编码前检查长度；长流程须人工拆成完整子流程。相关性分数显式使用 raw logit，不能与旧版经过默认激活函数的分数直接比较。
