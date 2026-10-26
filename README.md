@@ -288,7 +288,19 @@ python -m evaluation.evaluate_generation --evidence-only
 python -m evaluation.evaluate_generation --summarize "evaluation/answer_runs/你的审核报告.json"
 ```
 
-审核口径与指标定义见 [`GENERATION_EVALUATION.md`](GENERATION_EVALUATION.md)。在完成人工审核前，不输出生成质量指标。
+审核口径与指标定义见 [`docs/generation-evaluation.md`](docs/generation-evaluation.md)。在完成审核前，统计脚本不输出生成质量指标。
+
+当前一轮结果（6 道已知修复回归题：5 道生成回答 + 1 道库外拒答，模型 `deepseek-flash`，**AI 辅助逐题标注，尚未经独立人工复核**）：
+
+| 指标 | 结果 |
+|---|---:|
+| 必需要点覆盖率 | 21/22（0.95） |
+| 事实陈述证据支持率 | 74/74 |
+| 含无依据陈述的回答 | 0/5 |
+| 引用审核通过率 | 4/5 |
+| 库外拒答正确 | 1/1 |
+
+原始答案、证据与逐项标注见 `evaluation/answer_runs/20261014T055824550212Z.json`。样本很小且为已知题，不代表整体回答准确率或幻觉率。完整说明见 [`docs/evaluation-report.md`](docs/evaluation-report.md)。
 
 ## 项目结构
 
@@ -316,11 +328,18 @@ python -m evaluation.evaluate_generation --summarize "evaluation/answer_runs/你
 | `tests/` | 领域状态、范围过滤、接口契约与指标边界测试 |
 
 
+## 已知局限
+
+- 知识库只收录 AX10 / AX20 的 V1 US 资料（28 条中文整理章节），不是完整手册；其他版本与地区会被拒绝而不是借用。
+- 检索与生成评测都是手工编写的小样本回归集（检索 22 道保留题、生成 6 道题），指标不能外推为业务准确率。
+- 引用检查只验证编号存在且不越界，不验证内容是否被证据支持；后者依赖人工审核。
+- BM25 在每次查询时于过滤后的子集上构建，适合当前本地小库，未验证大规模数据与并发。
+- 路由器数据来自结构化整理章节；旧 TXT/PDF 加载链仅用于 demo，不提供自动章节识别或 OCR。
+
 ## 相关文档
 
+- [`docs/evaluation-report.md`](docs/evaluation-report.md)：检索、服务与生成评测报告
+- [`docs/generation-evaluation.md`](docs/generation-evaluation.md)：生成质量审核口径与操作
 - [`data/router/SOURCES.md`](data/router/SOURCES.md)：官方来源与资料边界
-- [`ROUTER_TEST_REPORT.md`](ROUTER_TEST_REPORT.md)：领域改造测试报告
-- [`GENERATION_EVALUATION.md`](GENERATION_EVALUATION.md)：生成质量人工审核口径
-- [`ONLINE_FIX_TEST_REPORT.md`](ONLINE_FIX_TEST_REPORT.md)：在线验收修复与回归结果
 
 旧 TXT/PDF 演示链仍然保留，但只能显式设置 `RAG_PROFILE=demo` 后使用；领域 API 不接受 demo profile，旧演示资料不会进入路由器检索候选。

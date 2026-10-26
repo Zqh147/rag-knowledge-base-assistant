@@ -1,7 +1,7 @@
 {
   "phase": "initial Windows online acceptance before fixes",
   "corpus_digest": "6c0faac020975bdbc4d2f0d0f90a52b8fe1a9a9143c0d04c4d42608271acd878",
-  "evidence": "User-pasted actual Windows command and answer outputs on 2026-10-14",
+  "evidence": "Actual Windows command and answer outputs, 2026-10-14",
   "checks": [
     {
       "case": "wifi",
